@@ -20,7 +20,15 @@ void Empty::printSpaceTop()
 
 void Empty::printSpaceMiddle()
 {
-    cout << "   ";
+    if (this->character == 0)
+    {
+        cout << "   ";
+    }
+
+    else
+    {
+        cout << " " << this->character->getSymbol() << " ";
+    }
 }
 
 void Empty::printSpaceBottom()

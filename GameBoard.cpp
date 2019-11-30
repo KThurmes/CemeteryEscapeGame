@@ -2,6 +2,7 @@
 #include "Space.hpp"
 #include "Empty.hpp"
 #include <iostream>
+#include "Player.hpp"
 
 using std::cout;
 using std::endl;
@@ -19,6 +20,8 @@ GameBoard::GameBoard()
             spaces[i][j] = new Empty();
         }
     }
+    player = new Player();
+    spaces[0][0]->setCharacter(player);
 }
 
 void GameBoard::printGameBoard()
