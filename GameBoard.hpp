@@ -9,11 +9,11 @@ private:
     int nRows;
     int nCols;
     Space ***spaces;
-    Player *player;
 
 public:
     GameBoard();
     void printGameBoard();
+    void setCharacter(int, int, Character *);
 };
 
 #endif

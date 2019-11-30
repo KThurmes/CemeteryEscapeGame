@@ -20,8 +20,11 @@ GameBoard::GameBoard()
             spaces[i][j] = new Empty();
         }
     }
-    player = new Player();
-    spaces[0][0]->setCharacter(player);
+}
+
+void GameBoard::setCharacter(int row, int col, Character *charac)
+{
+    spaces[col][row]->setCharacter(charac);
 }
 
 void GameBoard::printGameBoard()

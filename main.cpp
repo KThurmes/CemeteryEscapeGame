@@ -1,9 +1,9 @@
 #include "Menu.hpp"
 #include "GameBoard.hpp"
+#include "Game.hpp"
 
 int main()
 {
-    GameBoard gb;
-    gb.printGameBoard();
-    return 0;
+    Game game;
+    game.printGameBoard();
 }
