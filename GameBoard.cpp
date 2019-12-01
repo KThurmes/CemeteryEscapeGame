@@ -5,6 +5,7 @@
 #include "Player.hpp"
 #include "Gate.hpp"
 #include "Fence.hpp"
+#include "Gravestone.hpp"
 
 using std::cout;
 using std::endl;
@@ -22,6 +23,7 @@ GameBoard::GameBoard()
         spaces[i] = new Space *[nCols];
         for (int j = 0; j < nCols; ++j)
         {
+            //Create the fence and gate
             if (i == 0)
             {
                 if (j == 7)
@@ -34,6 +36,29 @@ GameBoard::GameBoard()
                     spaces[i][j] = new Fence();
                 }
             }
+            //Place gravestones
+            else if (i == 1 && j == 2)
+            {
+                spaces[i][j] = new Gravestone();
+            }
+            else if (i == 7 && j == 3)
+            {
+                spaces[i][j] = new Gravestone();
+            }
+            else if (i == 5 && j == 8)
+            {
+                spaces[i][j] = new Gravestone();
+            }
+            else if (i == 1 && j == 9)
+            {
+                spaces[i][j] = new Gravestone();
+            }
+            else if (i == 9 && j == 8)
+            {
+                spaces[i][j] = new Gravestone();
+            }
+
+            //Fill in every other square
             else
             {
                 spaces[i][j] = new Empty();

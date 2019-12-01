@@ -2,11 +2,24 @@
 #include "Player.hpp"
 #include "GameBoard.hpp"
 #include <iostream>
+#include <cstdlib>
+#include <ctime>
 using std::cout;
 using std::endl;
 
 Game::Game()
 {
+    srand(time(NULL));
+    setPlayer(1,7);
+    setSister(3,3);
+}
+
+void Game::setSister(int row, int col){
+    Space *theSpace = gb.getSpaceAt(row, col);
+    theSpace->setPrintSymbol(sister.getSymbol());
+    theSpace->setHasCharacter(true);
+
+    sister.setLocation(theSpace);
 }
 
 void Game::setPlayer(int row, int col)
@@ -48,6 +61,9 @@ void Game::turn()
     {
         //user makes their move
         player.move();
+
+        //sister makes her move
+        sister.move();
 
         //update health
 
