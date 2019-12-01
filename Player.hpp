@@ -9,6 +9,7 @@ private:
 
 public:
     Player();
+    ~Player();
     void move();
 };
 

@@ -6,9 +6,9 @@ class Empty : public Space
 {
 private:
 public:
-    //void printSpace();
     void printSpaceTop();
     void printSpaceMiddle();
     void printSpaceBottom();
+    ~Empty();
 };
 #endif

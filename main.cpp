@@ -5,5 +5,7 @@
 int main()
 {
     Game game;
+    game.setPlayer(0, 0);
     game.printGameBoard();
+    game.deleteGame();
 }

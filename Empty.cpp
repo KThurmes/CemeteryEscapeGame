@@ -4,15 +4,6 @@
 using std::cout;
 using std::endl;
 
-/* void Empty::printSpace()
-{
-    cout << "-----" << endl;
-    cout << "|   |" << endl;
-    cout << "|   |" << endl;
-    cout << "|   |" << endl;
-    cout << "-----" << endl;
-} */
-
 void Empty::printSpaceTop()
 {
     cout << "   ";
@@ -20,18 +11,14 @@ void Empty::printSpaceTop()
 
 void Empty::printSpaceMiddle()
 {
-    if (this->character == 0)
-    {
-        cout << "   ";
-    }
-
-    else
-    {
-        cout << " " << this->character->getSymbol() << " ";
-    }
+    cout << " " << printSymbol << " ";
 }
 
 void Empty::printSpaceBottom()
 {
     cout << "   ";
+}
+
+Empty::~Empty()
+{
 }
