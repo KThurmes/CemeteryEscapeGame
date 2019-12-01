@@ -123,7 +123,7 @@ void GameBoard::deleteGameBoard()
         }
         delete[] spaces[i];
     }
-    //delete[] spaces;
+    delete[] spaces;
 }
 
 Space *GameBoard::getSpaceAt(int row, int col)
