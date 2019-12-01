@@ -6,6 +6,7 @@ using std::endl;
 
 Player::Player()
 {
+    location = 0;
     symbol = 'x';
 }
 
@@ -24,27 +25,60 @@ void Player::move()
 
     int selection = getNumberBetween(0, 4);
 
+    Space *destination;
+
+    cout << "Player is on tile " << location->getIDNum() << endl;
     if (selection == 0)
     {
         //check up
-        //move
+        destination = location->getTop();
     }
 
     else if (selection == 1)
     {
         //check right
-        //move
+        destination = location->getRight();
     }
 
     else if (selection == 2)
     {
         //check down
-        //move
+        destination = location->getBottom();
     }
 
     else if (selection == 3)
     {
         //check left
-        //move
+        destination = location->getLeft();
+    }
+    else
+    {
+        return;
+    }
+
+    if (destination != 0)
+    {
+        cout << "Destination is tile " << destination->getIDNum() << endl;
+        //Make sure the space is passable
+        if (!destination->getPassable())
+        {
+            cout << "Impassable!" << endl;
+            move();
+        }
+        //Make sure there isn't a character there already
+        else if (destination->getHasCharacter())
+        {
+            cout << "There's another character there!" << endl;
+            move();
+        }
+        else
+        {
+            setLocation(destination);
+        }
+    }
+    else
+    {
+        cout << "Cannot go in that direction!" << endl;
+        move();
     }
 }

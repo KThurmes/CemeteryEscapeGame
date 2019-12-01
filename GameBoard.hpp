@@ -13,7 +13,6 @@ private:
 public:
     GameBoard();
     void printGameBoard();
-    //void setCharacter(int, int, Character *);
     void deleteGameBoard();
     Space *getSpaceAt(int, int);
 };

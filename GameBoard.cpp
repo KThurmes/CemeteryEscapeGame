@@ -12,6 +12,7 @@ GameBoard::GameBoard()
     nCols = 3;
     nRows = 4;
     spaces = new Space **[nRows];
+    int k = 0;
 
     //initialize spaces
     for (int i = 0; i < nRows; ++i)
@@ -20,6 +21,8 @@ GameBoard::GameBoard()
         for (int j = 0; j < nCols; ++j)
         {
             spaces[i][j] = new Empty();
+            spaces[i][j]->setIDNum(k);
+            ++k;
         }
     }
 
@@ -66,12 +69,6 @@ GameBoard::GameBoard()
         }
     }
 }
-
-/* void GameBoard::setCharacter(int row, int col, Character *charac)
-{
-    spaces[row][col]->setCharacter(charac);
-    spaces[row][col]->setHasCharacter(true);
-} */
 
 void GameBoard::printGameBoard()
 {

@@ -18,5 +18,6 @@ public:
     void deleteGame();
     void turn();
     void setPlayer(int, int);
+    void setCharacter(Character *, int, int);
 };
 #endif

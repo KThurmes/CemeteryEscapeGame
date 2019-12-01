@@ -13,6 +13,16 @@ Space::Space()
     printSymbol = " ";
 }
 
+void Space::setIDNum(int id)
+{
+    idNum = id;
+}
+
+int Space::getIDNum()
+{
+    return idNum;
+}
+
 void Space::setTop(Space *newTop)
 {
     top = newTop;
@@ -40,4 +50,30 @@ void Space::setHasCharacter(bool doesIt)
 void Space::setPrintSymbol(string symb)
 {
     printSymbol = symb;
+}
+
+Space *Space::getTop()
+{
+    return top;
+}
+Space *Space::getRight()
+{
+    return right;
+}
+Space *Space::getBottom()
+{
+    return bottom;
+}
+Space *Space::getLeft()
+{
+    return left;
+}
+bool Space::getPassable()
+{
+    return passable;
+}
+
+bool Space::getHasCharacter()
+{
+    return hasCharacter;
 }

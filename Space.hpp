@@ -13,6 +13,7 @@ protected:
     bool hasCharacter;
     bool passable;
     string printSymbol;
+    int idNum;
 
 public:
     Space();
@@ -26,6 +27,14 @@ public:
     void setLeft(Space *);
     void setHasCharacter(bool);
     void setPrintSymbol(string);
+    Space *getTop();
+    Space *getRight();
+    Space *getBottom();
+    Space *getLeft();
+    bool getPassable();
+    bool getHasCharacter();
+    void setIDNum(int);
+    int getIDNum();
 };
 
 #endif
