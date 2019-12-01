@@ -12,5 +12,6 @@ public:
     void printSpaceTop();
     void printSpaceMiddle();
     void printSpaceBottom();
+    void interact();
 };
 #endif

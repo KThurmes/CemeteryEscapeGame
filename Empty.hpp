@@ -10,5 +10,6 @@ public:
     void printSpaceMiddle();
     void printSpaceBottom();
     ~Empty();
+    void interact();
 };
 #endif

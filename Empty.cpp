@@ -22,3 +22,7 @@ void Empty::printSpaceBottom()
 Empty::~Empty()
 {
 }
+
+void Empty::interact()
+{
+}

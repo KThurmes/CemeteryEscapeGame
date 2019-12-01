@@ -1,7 +1,9 @@
 #include "Fence.hpp"
 #include "Space.hpp"
 #include <iostream>
+#include "getNumberBetween.hpp"
 using std::cout;
+using std::endl;
 
 Fence::Fence()
 {
@@ -22,4 +24,9 @@ void Fence::printSpaceMiddle()
 void Fence::printSpaceBottom()
 {
     cout << "   ";
+}
+
+void Fence::interact()
+{
+    cout << "This is a pretty solid-looking fence." << endl;
 }

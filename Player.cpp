@@ -62,8 +62,7 @@ void Player::move()
         //Make sure the space is passable
         if (!destination->getPassable())
         {
-            cout << "Impassable!" << endl;
-            move();
+            destination->interact();
         }
         //Make sure there isn't a character there already
         else if (destination->getHasCharacter())

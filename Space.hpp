@@ -15,6 +15,7 @@ protected:
     string printSymbol;
     int idNum;
 
+
 public:
     Space();
     virtual void printSpaceTop() = 0;
@@ -35,6 +36,7 @@ public:
     bool getHasCharacter();
     void setIDNum(int);
     int getIDNum();
+    virtual void interact() = 0;
 };
 
 #endif

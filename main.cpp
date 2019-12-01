@@ -9,10 +9,14 @@ int main()
 {
     Game game;
 
-    game.setPlayer(1, 1);
+    game.setPlayer(1, 7);
 
     game.printGameBoard();
 
-    game.turn();
+    while (true)
+    {
+        game.turn();
+    }
+
     game.deleteGame();
 }
