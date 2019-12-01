@@ -3,14 +3,16 @@
 #include "Empty.hpp"
 #include <iostream>
 #include "Player.hpp"
+#include "Gate.hpp"
+#include "Fence.hpp"
 
 using std::cout;
 using std::endl;
 
 GameBoard::GameBoard()
 {
-    nCols = 3;
-    nRows = 4;
+    nCols = 10;
+    nRows = 11;
     spaces = new Space **[nRows];
     int k = 0;
 
@@ -20,8 +22,23 @@ GameBoard::GameBoard()
         spaces[i] = new Space *[nCols];
         for (int j = 0; j < nCols; ++j)
         {
-            spaces[i][j] = new Empty();
-            spaces[i][j]->setIDNum(k);
+            if (i == 0)
+            {
+                if (j == 7)
+                {
+
+                    spaces[i][j] = new Gate();
+                }
+                else
+                {
+                    spaces[i][j] = new Fence();
+                }
+            }
+            else
+            {
+                spaces[i][j] = new Empty();
+                spaces[i][j]->setIDNum(k);
+            }
             ++k;
         }
     }

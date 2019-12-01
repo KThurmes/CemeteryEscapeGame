@@ -7,7 +7,7 @@ CXXFLAGS = -std=c++11
 CXXFLAGS += -Wall
 CXXFLAGS += -pedantic-errors
 CXXFLAGS += -g
-OBJS = main.o Character.o Empty.o Game.o GameBoard.o Menu.o Player.o Space.o getNumberBetween.o 
+OBJS = main.o Character.o Empty.o Game.o Fence.o GameBoard.o Menu.o Gate.o Player.o Space.o getNumberBetween.o 
 SRCS = *.cpp
 HEADERS = *.hpp
 #LDFLAGS = -lboost_date_time (any libraries you want to link)
