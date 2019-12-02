@@ -5,11 +5,13 @@
 class Sister:public NPC{
 
 private:
-
+bool found;
 public:
     Sister();
     ~Sister();
     void move();
+    bool getFound();
+    int interact();
 };
 
 #endif

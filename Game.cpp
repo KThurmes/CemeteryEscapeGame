@@ -60,11 +60,20 @@ void Game::turn()
     else
     {
         //user makes their move
-        player.move();
+        Space* charSpace = player.move();
+        if(charSpace != 0){
+            interaction(charSpace);
+        }
 
-        //sister makes her move
-        sister.move();
+        //Check if sister has been found
+        if (!sister.getFound()){
+            //sister makes her move
+            sister.move();
+        }
+ 
+        //Delete sister if found
 
+        
         //update health
 
         //update foundSister
@@ -74,4 +83,10 @@ void Game::turn()
         //print screen
         printGameBoard();
     }
+}
+
+void Game::interaction (Space* location){
+    //###TODO change when multiple characters are introduced. Search Character* list for which character is at the given location.
+    int damage = sister.interact();
+    //player.takeDamage(damage);
 }

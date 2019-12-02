@@ -9,7 +9,7 @@ protected:
     string symbol;
 
 public:
-    virtual void move() = 0;
+
     string getSymbol();
     virtual ~Character(){};
     void setLocation(Space *);

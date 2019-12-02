@@ -14,7 +14,7 @@ Player::~Player()
 {
 }
 
-void Player::move()
+Space* Player::move()
 {
     cout << "In which direction would you like your player to go?" << endl;
     cout << "0: Up" << endl;
@@ -53,7 +53,7 @@ void Player::move()
     }
     else
     {
-        return;
+        return 0;
     }
 
     if (destination != 0)
@@ -63,16 +63,18 @@ void Player::move()
         if (!destination->getPassable())
         {
             destination->interact();
+            return 0;
         }
-        //Make sure there isn't a character there already
+        //If there's a character there already, return the space they're on.
         else if (destination->getHasCharacter())
         {
             cout << "There's another character there!" << endl;
-            move();
+            return destination;
         }
         else
         {
             setLocation(destination);
+            return 0;
         }
     }
     else
@@ -81,3 +83,4 @@ void Player::move()
         move();
     }
 }
+

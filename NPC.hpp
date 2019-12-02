@@ -6,10 +6,12 @@ class NPC: public Character{
 private:
     int direction;
 public:
+    virtual void move() = 0;
     void turn(int);
-    virtual void move()=0;
     ~NPC(){};
     void step();
+    virtual int interact() = 0;
+    void disappear();
 };
 
 #endif

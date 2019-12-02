@@ -4,6 +4,7 @@
 #include "GameBoard.hpp"
 #include "Space.hpp"
 #include "Sister.hpp"
+#include "Character.hpp"
 
 class Game
 {
@@ -22,5 +23,8 @@ public:
     void setPlayer(int, int);
     void setSister(int, int);
     void setCharacter(Character *, int, int);
+    void interaction(Space*);
+
+
 };
 #endif

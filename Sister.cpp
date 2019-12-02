@@ -2,6 +2,7 @@
 #include "getRandomInt.hpp"
 #include "Character.hpp"
 #include <iostream>
+#include "getNumberBetween.hpp"
 using std::cout;
 using std::endl;
 
@@ -35,3 +36,29 @@ void Sister::move(){
     }
 
 }
+
+int Sister::interact(){
+    cout<< "Hm. This ghost looks odd. Upon further inspection, it looks like it might just be a person walking around in a white bedsheet."<<endl;
+    cout<< "Pull the sheet?"<<endl;
+    cout<< "1. Yes"<<endl;
+    cout <<"2. No" <<endl;
+    int selection = getNumberBetween(1,2);
+    if (selection ==1){
+        cout<< "Sister: \"Excuse me! I was practicing for Hamlet. It's called \"method acting\" and I wouldn't expect an uncultured plebe like you to know about it."<<endl;
+        cout<< "Harumph. You've totally harshed my vibe. Now the school play is doomed. DOOMED, I tell you!"<<endl;
+        cout<< "You're the worst sister ever! I'm going home and telling mom!"<<endl;
+        this->found = true;
+        disappear();
+    }
+    else {
+        cout<< "Yeah, maybe not the best idea. Who knows what kinds of weirdos hang out in graveyards."<<endl;
+    }
+
+    return 0;
+}
+
+bool Sister::getFound()
+{
+    return found;
+    }
+

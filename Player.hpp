@@ -10,7 +10,9 @@ private:
 public:
     Player();
     ~Player();
-    void move();
+    Space* move();
+    //void takeDamage(int);
+
 };
 
 #endif
