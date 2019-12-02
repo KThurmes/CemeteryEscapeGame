@@ -1,6 +1,9 @@
 #include "Space.hpp"
+#include "Item.hpp"
 #include <iostream>
+#include "getNumberBetween.hpp"
 using std::cout;
+using std::endl;
 
 Space::Space()
 {
@@ -11,6 +14,7 @@ Space::Space()
     hasCharacter = false;
     passable = true;
     printSymbol = " ";
+    item = 0;
 }
 
 void Space::setIDNum(int id)
@@ -76,4 +80,31 @@ bool Space::getPassable()
 bool Space::getHasCharacter()
 {
     return hasCharacter;
+}
+
+void Space::dropItem(Item* dropped){
+    this->item = dropped;
+}
+
+bool Space::hasItem(){
+    return (this->item != 0);
+}
+
+Item* Space::pickUpItem(){
+
+    if (hasItem()){
+        cout<< "There's a " << item->getItemName() << " here. Would you like to pick it up?"<<endl;
+        cout << "1. Yes"<<endl;
+        cout << "2. No"<<endl;
+        int selection = getNumberBetween(1,2);
+        if (selection == 1){
+                Item* toBeReturned = item;
+    item = 0;
+    return toBeReturned;
+        }
+        else{
+            return 0;
+        }
+    }
+
 }

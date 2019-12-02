@@ -44,10 +44,11 @@ int Sister::interact(){
     cout <<"2. No" <<endl;
     int selection = getNumberBetween(1,2);
     if (selection ==1){
-        cout<< "Sister: \"Excuse me! I was practicing for Hamlet. It's called \"method acting\" and I wouldn't expect an uncultured plebe like you to know about it."<<endl;
+        cout<< "Sister: \"Excuse you! I was practicing for Hamlet. It's called \"method acting\" and I wouldn't expect an uncultured plebe like you to know about it."<<endl;
         cout<< "Harumph. You've totally harshed my vibe. Now the school play is doomed. DOOMED, I tell you!"<<endl;
         cout<< "You're the worst sister ever! I'm going home and telling mom!"<<endl;
         this->found = true;
+        dropItem();
         disappear();
     }
     else {

@@ -21,3 +21,7 @@ void Character::setLocation(Space *theSpace)
     location->setHasCharacter(true);
     location->setPrintSymbol(symbol);
 }
+
+Space* Character::getLocation(){
+    return location;
+}

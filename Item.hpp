@@ -4,13 +4,12 @@
 using std::string;
 
 class Item{
-    private:
+    protected:
         string itemName;
         string description;
     public:
         string getItemName();
-        string getDescription() = 0;
-        virtual ~Item();
+        string getDescription();
 };
 
 #endif

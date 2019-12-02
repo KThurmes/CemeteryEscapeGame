@@ -1,5 +1,6 @@
 #include "NPC.hpp"
 #include "Space.hpp"
+#include "Item.hpp"
 
 void NPC::turn(int direction){
     //0 is clockwise rotation, 1 is counter-clockwise
@@ -43,4 +44,14 @@ void NPC::disappear(){
     location -> setHasCharacter(false);
     location -> setPrintSymbol(" ");
     location = 0;
+}
+
+void NPC::pickUpItem(Item* theItem){
+    carriedItem = theItem;
+}
+
+void NPC::dropItem(){
+    Item* theItem = carriedItem;
+    carriedItem = 0;
+    location->dropItem(theItem);
 }

@@ -4,6 +4,8 @@
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
+#include "Key.hpp"
+#include "Sheet.hpp"
 using std::cout;
 using std::endl;
 
@@ -12,6 +14,9 @@ Game::Game()
     srand(time(NULL));
     setPlayer(1,7);
     setSister(3,3);
+    Sheet *sheet = new Sheet();
+    //Key *key = new Key();
+    sister.pickUpItem(sheet);
 }
 
 void Game::setSister(int row, int col){
@@ -59,10 +64,21 @@ void Game::turn()
     }
     else
     {
-        //user makes their move
+        //Player makes their move
         Space* charSpace = player.move();
+
+        //Player interacts with any characters they bumped into
         if(charSpace != 0){
             interaction(charSpace);
+        }
+
+        //Pick up any items that are lying around
+        Item* pickedUp = player.getLocation()->pickUpItem();
+        if (pickedUp !=0){
+            int success = player.getInventory()->addItem(pickedUp);
+            if(success == 0){
+                player.getLocation()->dropItem(pickedUp);
+            }
         }
 
         //Check if sister has been found
@@ -71,7 +87,6 @@ void Game::turn()
             sister.move();
         }
  
-        //Delete sister if found
 
         
         //update health

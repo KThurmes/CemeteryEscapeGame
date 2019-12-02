@@ -1,5 +1,6 @@
 #include "Space.hpp"
 #include "Empty.hpp"
+#include "getNumberBetween.hpp"
 #include <iostream>
 using std::cout;
 using std::endl;
@@ -25,4 +26,5 @@ Empty::~Empty()
 
 void Empty::interact()
 {
+
 }

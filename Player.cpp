@@ -84,3 +84,14 @@ Space* Player::move()
     }
 }
 
+Inventory* Player::getInventory(){
+    Inventory* pInv = &inv;
+    return pInv;
+}
+
+void Player::pickUpItem(Item* toBePickedUp){
+    int success = inv.addItem(toBePickedUp);
+    if(success == 0){
+        location->dropItem(toBePickedUp);
+    }
+}

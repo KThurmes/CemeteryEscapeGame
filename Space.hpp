@@ -1,6 +1,7 @@
 #ifndef SPACE_HPP
 #define SPACE_HPP
 #include <string>
+#include "Item.hpp"
 using std::string;
 
 class Space
@@ -14,6 +15,7 @@ protected:
     bool passable;
     string printSymbol;
     int idNum;
+    Item* item;
 
 
 public:
@@ -37,6 +39,9 @@ public:
     void setIDNum(int);
     int getIDNum();
     virtual void interact() = 0;
+    void dropItem(Item*);
+    Item* pickUpItem();
+    bool hasItem();
 };
 
 #endif
