@@ -9,7 +9,6 @@ class Player : public Character
 private:
     Inventory inv;
     int health;
-    bool pastFence;
 
 public:
     Player();

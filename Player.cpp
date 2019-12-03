@@ -26,37 +26,37 @@ Space *Player::move()
 
     int selection = getNumberBetween(0, 4);
 
-    Space *destination;
+    //Space *destination;
 
     if (selection == 0)
     {
         //check up
-        destination = location->getTop();
+        return location->getTop();
     }
 
     else if (selection == 1)
     {
         //check right
-        destination = location->getRight();
+        return location->getRight();
     }
 
     else if (selection == 2)
     {
         //check down
-        destination = location->getBottom();
+        return location->getBottom();
     }
 
     else if (selection == 3)
     {
         //check left
-        destination = location->getLeft();
+        return location->getLeft();
     }
     else
     {
         return location;
     }
 
-    if (destination != 0)
+    /*  if (destination != 0)
     {
         Inventory *inventory = &inv;
         //Make sure the space is passable
@@ -81,7 +81,7 @@ Space *Player::move()
     {
         cout << "Cannot go in that direction!" << endl;
         return move();
-    }
+    } */
 }
 
 Inventory *Player::getInventory()
@@ -117,14 +117,4 @@ void Player::takeDamage(int damage)
 int Player::getHealth()
 {
     return health;
-}
-
-bool Player::getPastFence()
-{
-    return pastFence;
-}
-
-void Player::setPastFence(bool past)
-{
-    pastFence = past;
 }

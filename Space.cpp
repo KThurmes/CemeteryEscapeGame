@@ -12,9 +12,9 @@ Space::Space()
     bottom = 0;
     left = 0;
     hasCharacter = false;
-    passable = true;
     printSymbol = " ";
     item = 0;
+    spawnGhostEvent = 0;
 }
 
 void Space::setIDNum(int id)

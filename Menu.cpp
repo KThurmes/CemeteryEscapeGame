@@ -62,7 +62,7 @@ void Menu::gameOptions()
     cout << "4. View player health" << endl;
     cout << "5. Quit" << endl;
 
-    int selection = getNumberBetween(1, 4);
+    int selection = getNumberBetween(1, 5);
 
     if (selection == 1)
     {
@@ -85,6 +85,7 @@ void Menu::gameOptions()
     else if (selection == 4)
     {
         game.printPlayerHealth();
+        gameOptions();
     }
     else
     {

@@ -200,7 +200,8 @@ bool Game::checkGameOver()
         return 1;
     }
 
-    if (sister.getFound() && player.getPastFence())
+    bool escaped = player.getLocation()->getSpaceType() == "fence" || player.getLocation()->getSpaceType() == "gate";
+    if (sister.getFound() && escaped)
     {
         cout << "Congratulations! You've found your sister and now you've gotten home in time for mom's spaghetti!" << endl;
         return 1;

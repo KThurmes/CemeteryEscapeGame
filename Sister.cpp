@@ -8,9 +8,9 @@ using std::endl;
 
 Sister::Sister()
 {
-
+    found = 0;
     location = 0;
-    symbol = "S";
+    symbol = "g";
 }
 
 Sister::~Sister()

@@ -18,8 +18,9 @@ protected:
     int idNum;
     Item *item;
     string spaceType;
-    bool collision;
+    //bool collision;
     bool spawnGhostEvent;
+
 
 public:
     Space();
@@ -48,6 +49,7 @@ public:
     string getSpaceType();
     bool getSpawnGhost();
     void setSpawnGhost(bool);
+
 };
 
 #endif
