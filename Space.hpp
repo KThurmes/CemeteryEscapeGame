@@ -3,7 +3,6 @@
 #include <string>
 #include "Item.hpp"
 #include "Inventory.hpp"
-//#include "Character.hpp"
 using std::string;
 
 class Space
@@ -18,9 +17,9 @@ protected:
     string printSymbol;
     int idNum;
     Item *item;
-    //Character* character;
     string spaceType;
     bool collision;
+    bool spawnGhostEvent;
 
 public:
     Space();
@@ -47,6 +46,8 @@ public:
     Item *pickUpItem();
     bool hasItem();
     string getSpaceType();
+    bool getSpawnGhost();
+    void setSpawnGhost(bool);
 };
 
 #endif

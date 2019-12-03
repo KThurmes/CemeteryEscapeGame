@@ -2,10 +2,11 @@
 #include "NPC.hpp"
 #include "Character.hpp"
 #include <iostream>
+#include "getRandomInt.hpp"
 using std::cout;
 using std::endl;
 
-Ghost::Ghost
+Ghost::Ghost()
 {
     location = 0;
     symbol = "G";

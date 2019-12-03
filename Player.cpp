@@ -53,7 +53,7 @@ Space *Player::move()
     }
     else
     {
-        return 0;
+        return location;
     }
 
     if (destination != 0)
@@ -117,4 +117,14 @@ void Player::takeDamage(int damage)
 int Player::getHealth()
 {
     return health;
+}
+
+bool Player::getPastFence()
+{
+    return pastFence;
+}
+
+void Player::setPastFence(bool past)
+{
+    pastFence = past;
 }

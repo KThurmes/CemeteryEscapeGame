@@ -36,13 +36,15 @@ void Gravestone::interact(Inventory *playersInventory)
     {
         cout << "Dude. Not cool. Now you've angered the spirit of this poor dead person." << endl;
         cout << "Serves you right." << endl;
-        //###TODO: Spawn a baddie
+        //Set the flag to spawn a ghost.
+        spawnGhostEvent = true;
         passable = true;
         //###TODO: update printout
 
         if (hasKey)
         {
             cout << "But hey! It looks like there was a key under there!" << endl;
+            cout << "You'll have to wait until the ghost leaves to get it, though." << endl;
         }
     }
     else if (selection == 2)

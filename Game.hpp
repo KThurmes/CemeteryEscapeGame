@@ -27,13 +27,16 @@ public:
     void printGameBoard();
     void deleteGame();
     void turn();
-    void setPlayer(int, int);
-    void setSister(int, int);
+    //void setPlayer(int, int);
+    //void setSister(int, int);
     void setCharacter(Character *, int, int);
+    void setCharacter(Character *, Space *);
     void interaction(Space *);
     void interactionCheck();
     void showBackpackContents();
     void printBoardKey();
     void spawnGhost(int, int);
+    void spawnGhost(Space *);
+    bool checkGameOver();
 };
 #endif

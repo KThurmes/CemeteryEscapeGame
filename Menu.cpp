@@ -59,14 +59,18 @@ void Menu::gameOptions()
     cout << "1. Make a move" << endl;
     cout << "2. View backpack contents" << endl;
     cout << "3. View gameboard key" << endl;
-    cout << "4. Quit" << endl;
+    cout << "4. View player health" << endl;
+    cout << "5. Quit" << endl;
 
     int selection = getNumberBetween(1, 4);
 
     if (selection == 1)
     {
-        game.turn();
-        gameOptions();
+        if (!game.checkGameOver())
+        {
+            game.turn();
+            gameOptions();
+        }
     }
     else if (selection == 2)
     {

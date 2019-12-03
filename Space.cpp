@@ -82,34 +82,50 @@ bool Space::getHasCharacter()
     return hasCharacter;
 }
 
-void Space::dropItem(Item* dropped){
+void Space::dropItem(Item *dropped)
+{
     this->item = dropped;
 }
 
-bool Space::hasItem(){
+bool Space::hasItem()
+{
     return (this->item != 0);
 }
 
-Item* Space::pickUpItem(){
+Item *Space::pickUpItem()
+{
 
-    if (hasItem()){
-        cout<< "There's a " << item->getItemName() << " here. Would you like to pick it up?"<<endl;
-        cout << "1. Yes"<<endl;
-        cout << "2. No"<<endl;
-        int selection = getNumberBetween(1,2);
-        if (selection == 1){
-            Item* toBeReturned = item;
+    if (hasItem())
+    {
+        cout << "There's a " << item->getItemName() << " here. Would you like to pick it up?" << endl;
+        cout << "1. Yes" << endl;
+        cout << "2. No" << endl;
+        int selection = getNumberBetween(1, 2);
+        if (selection == 1)
+        {
+            Item *toBeReturned = item;
             item = 0;
             return toBeReturned;
         }
-        else{
+        else
+        {
             return 0;
         }
     }
     return 0;
-
 }
 
-string Space::getSpaceType(){
+string Space::getSpaceType()
+{
     return spaceType;
+}
+
+bool Space::getSpawnGhost()
+{
+    return spawnGhostEvent;
+}
+
+void Space::setSpawnGhost(bool spawnGhost)
+{
+    spawnGhostEvent = spawnGhost;
 }

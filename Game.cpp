@@ -15,38 +15,51 @@ using std::endl;
 Game::Game()
 {
     srand(time(NULL));
-    setPlayer(1, 7);
-    setSister(3, 3);
-    Sheet *sheet = new Sheet();
-    //Key *key = new Key();
-    sister.pickUpItem(sheet);
+
+    //Put the player in their starting place.
+    Player *pPlayer = &player;
+    setCharacter(pPlayer, 1, 7);
+
+    //Set up the sister
+    NPC *sis = &sister;
+    setCharacter(sis, 3, 3);
+    NPCList.push_back(sis);
+
+    //Give the sister the sheet to drop
+    Sheet sheet;
+    Sheet *pSheet = &sheet;
+    itemList.push_back(pSheet);
+    sister.pickUpItem(pSheet);
 }
 
-void Game::setSister(int row, int col)
+/* void Game::setSister(int row, int col)
 {
     Space *theSpace = gb.getSpaceAt(row, col);
     theSpace->setPrintSymbol(sister.getSymbol());
     theSpace->setHasCharacter(true);
-
     sister.setLocation(theSpace);
-}
+} */
 
-void Game::setPlayer(int row, int col)
+/* void Game::setPlayer(int row, int col)
 {
 
     Space *theSpace = gb.getSpaceAt(row, col);
     theSpace->setPrintSymbol(player.getSymbol());
     theSpace->setHasCharacter(true);
-
     player.setLocation(theSpace);
-}
+} */
 
 void Game::setCharacter(Character *character, int row, int col)
 {
     Space *theSpace = gb.getSpaceAt(row, col);
+    setCharacter(character, theSpace);
+}
+
+void Game::setCharacter(Character *character, Space *theSpace)
+{
     theSpace->setPrintSymbol(character->getSymbol());
     theSpace->setHasCharacter(true);
-    player.setLocation(theSpace);
+    character->setLocation(theSpace);
 }
 
 void Game::printGameBoard()
@@ -54,61 +67,84 @@ void Game::printGameBoard()
     gb.printGameBoard();
 }
 
-void Game::deleteGame()
-{
-    gb.deleteGameBoard();
-}
-
 void Game::turn()
 {
-    //check if game is over
+    /*     //check if game is over
     if (gameOver == true)
     {
         cout << "The game is over." << endl;
+    } */
+
+    //Player makes their move
+    Space *destination = player.move();
+
+    //If there isn't a square in the direction the player wants to go...
+    if (destination == 0)
+    {
+        cout << "Cannot go in that direction!" << endl;
+        turn();
     }
+
     else
     {
-        //Player makes their move
-        Space *charSpace = player.move();
-
-        //Player interacts with any characters they bumped into
-        if (charSpace != 0)
+        if (destination == player.getLocation())
         {
-            interaction(charSpace);
+            //Stay where you are
         }
 
-        //Pick up any items that are lying around
-        Item *pickedUp = player.getLocation()->pickUpItem();
-        if (pickedUp != 0)
+        //Player interacts with any characters they bumped into
+        else if (destination->getHasCharacter())
         {
-            int success = player.getInventory()->addItem(pickedUp);
-            if (success == 0)
+            interaction(destination);
+        }
+
+        //If the space isn't passable, interact with it
+        else if (!destination->getPassable())
+        {
+            //Interact with the space
+            destination->interact(player.getInventory());
+
+            //See if game needs to spawn a ghost at destination
+            if (destination->getSpawnGhost())
             {
-                player.getLocation()->dropItem(pickedUp);
+                spawnGhost(destination);
             }
         }
 
-        //Check if sister has been found
-        if (!sister.getFound())
+        //Else, there's no one there and it's passable. Player moves.
+        else
         {
-            //sister makes her move
-            sister.move();
+            player.setLocation(destination);
         }
-
-        //update health
-
-        //update foundSister
-
-        //update gameOver
-
-        //print screen
-        printGameBoard();
     }
+
+    //Pick up any items that are lying around
+    Item *pickedUp = player.getLocation()->pickUpItem();
+
+    if (pickedUp != 0)
+    {
+        int success = player.getInventory()->addItem(pickedUp);
+
+        //Drop the item if there's no room in the backpack for it.
+        if (success == 0)
+        {
+            player.getLocation()->dropItem(pickedUp);
+        }
+    }
+
+    //Check if sister has been found
+    if (!sister.getFound())
+    {
+        //Sister makes her move
+        sister.move();
+    }
+
+    //print screen
+    printGameBoard();
 }
 
 void Game::interaction(Space *location)
 {
-    //###TODO change when multiple characters are introduced.
     //Search Character* list for which character is at the given location.
     int damage = 0;
     for (auto it = NPCList.begin(); it != NPCList.end(); ++it)
@@ -116,9 +152,12 @@ void Game::interaction(Space *location)
         NPC *theCharacter = *it;
         if (theCharacter->getLocation() == location)
         {
+            //Interact with the character at the location
             damage = theCharacter->interact();
         }
     }
+
+    //Update player health
     player.takeDamage(damage);
 }
 
@@ -137,6 +176,33 @@ void Game::printBoardKey()
 void Game::spawnGhost(int row, int col)
 {
     Ghost *newGhost = new Ghost();
-    setCharacter(newGhost, row, col);
+    Space *destination = gb.getSpaceAt(row, col);
+    spawnGhost(destination);
+}
+
+void Game::spawnGhost(Space *destination)
+{
+    Ghost *newGhost = new Ghost();
+    setCharacter(newGhost, destination);
     NPCList.push_back(newGhost);
+    destination->setSpawnGhost(false);
+}
+
+void Game::deleteGame()
+{
+    gb.deleteGameBoard();
+}
+
+bool Game::checkGameOver()
+{
+    if (player.getHealth() == 0)
+    {
+        cout << "You have run out of health! You will now become a permanent resident of this cemetary." << endl;
+        return 1;
+    }
+
+    if (sister.getFound() && player.getPastFence())
+    {
+        cout << "Congratulations! You've found your sister and now you've gotten home in time for mom's spaghetti!" << endl;
+    }
 }

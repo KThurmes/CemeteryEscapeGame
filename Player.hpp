@@ -9,6 +9,7 @@ class Player : public Character
 private:
     Inventory inv;
     int health;
+    bool pastFence;
 
 public:
     Player();
@@ -22,6 +23,8 @@ public:
     int interact();
     void takeDamage(int);
     int getHealth();
+    bool getPastFence();
+    void setPastFence(bool);
 };
 
 #endif
