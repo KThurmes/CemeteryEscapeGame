@@ -20,6 +20,7 @@ private:
     list<Item *> itemList;
     bool playerHasSheet;
     bool playerHasKey;
+    bool gameOver;
 
 public:
     Game();
@@ -36,5 +37,6 @@ public:
     void printPlayerHealth();
     void moveCharacter(Character *, Space *);
     void moveCharacter(Character *, int, int);
+    bool getGameOver() { return gameOver; };
 };
 #endif

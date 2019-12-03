@@ -18,7 +18,6 @@ protected:
     int idNum;
     Item *item;
     string spaceType;
-    //bool collision;
     bool spawnGhostEvent;
 
 public:

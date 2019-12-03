@@ -22,6 +22,10 @@ void Empty::printSpaceTop()
 
 void Empty::printSpaceMiddle()
 {
+    if (!hasCharacter && item != 0)
+    {
+        printSymbol = "#";
+    }
     cout << " " << printSymbol << " ";
 }
 

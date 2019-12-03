@@ -10,10 +10,13 @@ Fence::Fence()
 {
     passable = false;
     printSymbol = "-";
+    spaceType = "fence";
 }
+
 Fence::~Fence()
 {
 }
+
 void Fence::printSpaceTop()
 {
     cout << "   ";

@@ -27,6 +27,10 @@ Game::Game()
     Sheet *sheet = new Sheet();
     itemList.push_back(sheet);
     sister.pickUpItem(sheet);
+
+    gameOver = false;
+    playerHasKey = false;
+    playerHasSheet = false;
 }
 
 void Game::moveCharacter(Character *character, int row, int col)
@@ -101,33 +105,33 @@ void Game::turn()
         }
     }
 
-    //Pick up any items that are lying around
-    Item *pickedUp = player.getLocation()->pickUpItem();
+    gameOver = checkGameOver();
 
-    if (pickedUp != 0)
+    if (gameOver == false)
     {
-        int success = player.getInventory()->addItem(pickedUp);
+        //Pick up any items that are lying around
+        Item *pickedUp = player.getLocation()->pickUpItem();
 
-        //Drop the item if there's no room in the backpack for it.
-        if (success == 0)
+        if (pickedUp != 0)
         {
-            player.getLocation()->dropItem(pickedUp);
-        }
-    }
+            int success = player.getInventory()->addItem(pickedUp);
 
-    //Check if sister has been found
-    if (!sister.getFound())
-    {
+            //Drop the item if there's no room in the backpack for it.
+            if (success == 0)
+            {
+                player.getLocation()->dropItem(pickedUp);
+            }
+        }
+
         //Sister makes her move
         sister.move();
-    }
 
-    for (auto it = NPCList.begin(); it != NPCList.end(); ++it)
-    {
-        NPC *theCharacter = *it;
-        theCharacter->move();
+        for (auto it = NPCList.begin(); it != NPCList.end(); ++it)
+        {
+            NPC *theCharacter = *it;
+            theCharacter->move();
+        }
     }
-
     //print screen
     printGameBoard();
 }
@@ -192,6 +196,7 @@ bool Game::checkGameOver()
     bool escaped = player.getLocation()->getSpaceType() == "fence" || player.getLocation()->getSpaceType() == "gate";
     if (sister.getFound() && escaped)
     {
+        gameOver = true;
         cout << "Congratulations! You've found your sister and now you've gotten home in time for mom's spaghetti!" << endl;
         return 1;
     }

@@ -55,40 +55,45 @@ void Menu::backstory()
 
 void Menu::gameOptions()
 {
-    cout << "What would you like to do?" << endl;
-    cout << "1. Make a move" << endl;
-    cout << "2. View backpack contents" << endl;
-    cout << "3. View gameboard key" << endl;
-    cout << "4. View player health" << endl;
-    cout << "5. Quit" << endl;
-
-    int selection = getNumberBetween(1, 5);
-
-    if (selection == 1)
+    if (game.getGameOver())
     {
-        if (!game.checkGameOver())
+        game.deleteGame();
+        startMenu();
+    }
+    else
+    {
+        cout << "What would you like to do?" << endl;
+        cout << "1. Make a move" << endl;
+        cout << "2. View backpack contents" << endl;
+        cout << "3. View gameboard key" << endl;
+        cout << "4. View player health" << endl;
+        cout << "5. Quit" << endl;
+
+        int selection = getNumberBetween(1, 5);
+
+        if (selection == 1)
         {
             game.turn();
             gameOptions();
         }
-    }
-    else if (selection == 2)
-    {
-        game.showBackpackContents();
-        gameOptions();
-    }
-    else if (selection == 3)
-    {
-        game.printBoardKey();
-        gameOptions();
-    }
-    else if (selection == 4)
-    {
-        game.printPlayerHealth();
-        gameOptions();
-    }
-    else
-    {
-        game.deleteGame();
+        else if (selection == 2)
+        {
+            game.showBackpackContents();
+            gameOptions();
+        }
+        else if (selection == 3)
+        {
+            game.printBoardKey();
+            gameOptions();
+        }
+        else if (selection == 4)
+        {
+            game.printPlayerHealth();
+            gameOptions();
+        }
+        else
+        {
+            game.deleteGame();
+        }
     }
 }

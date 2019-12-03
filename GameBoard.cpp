@@ -102,11 +102,13 @@ GameBoard::GameBoard()
             if (j - 1 < 0)
             {
                 spaces[i][j]->setLeft(0);
+                spaces[i][j]->setRight(spaces[i][j + 1]);
             }
             //right column
             else if (j + 1 >= nCols)
             {
                 spaces[i][j]->setRight(0);
+                spaces[i][j]->setLeft(spaces[i][j - 1]);
             }
             //somewhere in the middle
             else

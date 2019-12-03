@@ -59,6 +59,7 @@ int Sister::interact()
         cout << "You're the worst sister ever! I'm going home and telling mom!" << endl;
         this->found = true;
         dropItem();
+        cout << "Your sister has stormed off towards home, leaving her sheet lying on the ground." << endl;
         disappear();
     }
     else

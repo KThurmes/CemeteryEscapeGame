@@ -9,6 +9,7 @@ Gate::Gate()
 {
     passable = false;
     printSymbol = "=";
+    spaceType = "gate";
 }
 Gate::~Gate()
 {
