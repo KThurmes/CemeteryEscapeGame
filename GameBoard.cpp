@@ -6,6 +6,7 @@
 #include "Gate.hpp"
 #include "Fence.hpp"
 #include "Gravestone.hpp"
+#include "Key.hpp"
 
 using std::cout;
 using std::endl;
@@ -53,9 +54,14 @@ GameBoard::GameBoard()
             {
                 spaces[i][j] = new Gravestone();
             }
+            //This last one has the key.
             else if (i == 9 && j == 8)
             {
-                spaces[i][j] = new Gravestone();
+                Key *key = new Key();
+                Gravestone *grave = new Gravestone();
+                grave->dropItem(key);
+                grave->setHasKey(true);
+                spaces[i][j] = grave;
             }
 
             //Fill in every other square

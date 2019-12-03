@@ -2,6 +2,8 @@
 #define SPACE_HPP
 #include <string>
 #include "Item.hpp"
+#include "Inventory.hpp"
+//#include "Character.hpp"
 using std::string;
 
 class Space
@@ -16,6 +18,8 @@ protected:
     string printSymbol;
     int idNum;
     Item* item;
+    //Character* character;
+    string spaceType;
 
 
 public:
@@ -38,10 +42,11 @@ public:
     bool getHasCharacter();
     void setIDNum(int);
     int getIDNum();
-    virtual void interact() = 0;
+    virtual void interact(Inventory*) = 0;
     void dropItem(Item*);
     Item* pickUpItem();
     bool hasItem();
+    string getSpaceType();
 };
 
 #endif

@@ -17,6 +17,8 @@ public:
     //void takeDamage(int);
     Inventory* getInventory();
     void pickUpItem(Item*);
+    bool hasKey();
+    bool hasSheet();
 
 };
 

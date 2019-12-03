@@ -23,6 +23,7 @@ class Inventory{
         int findItem(Item*);
         int findItem(string);
         int getNItems();
+        int getMaxItems();
 };
 
 #endif

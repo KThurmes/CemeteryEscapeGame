@@ -10,6 +10,6 @@ public:
     void printSpaceMiddle();
     void printSpaceBottom();
     ~Empty();
-    void interact();
+    void interact(Inventory*);
 };
 #endif

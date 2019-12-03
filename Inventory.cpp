@@ -82,3 +82,6 @@ int Inventory::findItem(string searchString){
 int Inventory::getNItems(){
     return nItems;
 }
+int Inventory::getMaxItems(){
+    return maxItems;
+}

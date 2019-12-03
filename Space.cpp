@@ -98,13 +98,18 @@ Item* Space::pickUpItem(){
         cout << "2. No"<<endl;
         int selection = getNumberBetween(1,2);
         if (selection == 1){
-                Item* toBeReturned = item;
-    item = 0;
-    return toBeReturned;
+            Item* toBeReturned = item;
+            item = 0;
+            return toBeReturned;
         }
         else{
             return 0;
         }
     }
+    return 0;
 
+}
+
+string Space::getSpaceType(){
+    return spaceType;
 }

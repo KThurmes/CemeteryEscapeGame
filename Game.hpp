@@ -14,6 +14,8 @@ private:
     GameBoard gb;
     bool gameOver;
     Character *charList;
+    bool playerHasSheet;
+    bool playerHasKey;
 
 public:
     Game();
@@ -24,6 +26,7 @@ public:
     void setSister(int, int);
     void setCharacter(Character *, int, int);
     void interaction(Space*);
+    void interactionCheck();
 
 
 };

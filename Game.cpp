@@ -102,6 +102,15 @@ void Game::turn()
 
 void Game::interaction (Space* location){
     //###TODO change when multiple characters are introduced. Search Character* list for which character is at the given location.
-    int damage = sister.interact();
+    //int damage = sister.interact();
+    sister.interact();
     //player.takeDamage(damage);
 }
+
+/* 
+void interactionCheck(){
+    bool hasKey = player.hasKey();
+    bool hasSheet = player.hasSheet();
+    string playerLocation = 
+    if(player.hasKey() && player.getLocation()->getSpaceType()=="fence"
+} */

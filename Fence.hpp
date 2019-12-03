@@ -1,6 +1,7 @@
 #ifndef FENCE_HPP
 #define FENCE_HPP
 #include "Space.hpp"
+#include "Inventory.hpp"
 class Fence : public Space
 {
 private:
@@ -10,6 +11,6 @@ public:
     void printSpaceTop();
     void printSpaceMiddle();
     void printSpaceBottom();
-    void interact();
+    void interact(Inventory *);
 };
 #endif

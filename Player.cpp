@@ -27,7 +27,6 @@ Space* Player::move()
 
     Space *destination;
 
-    cout << "Player is on tile " << location->getIDNum() << endl;
     if (selection == 0)
     {
         //check up
@@ -58,14 +57,14 @@ Space* Player::move()
 
     if (destination != 0)
     {
-        cout << "Destination is tile " << destination->getIDNum() << endl;
+        Inventory* inventory = &inv;
         //Make sure the space is passable
         if (!destination->getPassable())
         {
-            destination->interact();
+            destination->interact(inventory);
             return 0;
         }
-        //If there's a character there already, return the space they're on.
+        //If there's a character there already, don't move.
         else if (destination->getHasCharacter())
         {
             cout << "There's another character there!" << endl;
@@ -80,7 +79,7 @@ Space* Player::move()
     else
     {
         cout << "Cannot go in that direction!" << endl;
-        move();
+        return move();
     }
 }
 
@@ -94,4 +93,13 @@ void Player::pickUpItem(Item* toBePickedUp){
     if(success == 0){
         location->dropItem(toBePickedUp);
     }
+}
+
+
+bool Player::hasSheet(){
+return (inv.findItem("sheet")< inv.getMaxItems());
+}
+
+bool Player::hasKey(){
+return (inv.findItem("key")< inv.getMaxItems());
 }

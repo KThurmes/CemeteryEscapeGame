@@ -24,7 +24,7 @@ Empty::~Empty()
 {
 }
 
-void Empty::interact()
+void Empty::interact(Inventory* playersInventory)
 {
 
 }
