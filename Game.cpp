@@ -62,6 +62,16 @@ void Game::setCharacter(Character *character, Space *theSpace)
     character->setLocation(theSpace);
 }
 
+void Game::moveCharacter(Character *character, Space *destination)
+{
+    //Pick character up from where they were
+    character->getLocation()->setHasCharacter(false);
+    character->getLocation()->changeToDefaultSymbol();
+
+    //Move character to somewhere else
+    setCharacter(character, destination);
+}
+
 void Game::printGameBoard()
 {
     gb.printGameBoard();
@@ -87,8 +97,10 @@ void Game::turn()
 
     else
     {
+        cout << "The destination is " << destination->getIDNum() << "!\n";
         if (destination == player.getLocation())
         {
+            cout << "Staying put!\n";
             //Stay where you are
         }
 
@@ -96,17 +108,20 @@ void Game::turn()
         else if (destination->getHasCharacter())
         {
             interaction(destination);
+            cout << "The destination has a character!\n";
         }
 
         //If the space isn't passable, interact with it
         else if (!destination->getPassable())
         {
+            cout << "The destination is impassible!\n";
             //Interact with the space
             destination->interact(player.getInventory());
 
             //See if game needs to spawn a ghost at destination
             if (destination->getSpawnGhost())
             {
+                cout << "Spawning a ghost!\n";
                 spawnGhost(destination);
             }
         }
@@ -114,7 +129,8 @@ void Game::turn()
         //Else, there's no one there and it's passable. Player moves.
         else
         {
-            player.setLocation(destination);
+            cout << "moving to space " << destination->getIDNum() << "!\n";
+            moveCharacter(&player, destination);
         }
     }
 

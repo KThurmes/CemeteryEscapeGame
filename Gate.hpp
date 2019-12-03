@@ -5,13 +5,13 @@
 class Gate : public Space
 {
 private:
-
 public:
     Gate();
     ~Gate();
     void printSpaceTop();
     void printSpaceMiddle();
     void printSpaceBottom();
-    void interact(Inventory*);
+    void interact(Inventory *);
+    void changeToDefaultSymbol();
 };
 #endif

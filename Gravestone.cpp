@@ -9,6 +9,7 @@ using std::endl;
 Gravestone::Gravestone()
 {
     passable = false;
+    printSymbol = "±";
 }
 Gravestone::~Gravestone()
 {
@@ -19,7 +20,7 @@ void Gravestone::printSpaceTop()
 }
 void Gravestone::printSpaceMiddle()
 {
-    cout << " ± ";
+    cout << " " << printSymbol << " ";
 }
 void Gravestone::printSpaceBottom()
 {
@@ -70,4 +71,9 @@ void Gravestone::interact(Inventory *playersInventory)
 void Gravestone::setHasKey(bool key)
 {
     this->hasKey = key;
+}
+
+void Gravestone::changeToDefaultSymbol()
+{
+    printSymbol = "±";
 }

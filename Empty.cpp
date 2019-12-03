@@ -5,6 +5,16 @@
 using std::cout;
 using std::endl;
 
+Empty::Empty()
+{
+    printSymbol = " ";
+    spaceType = "empty";
+    spawnGhostEvent = 0;
+    item = 0;
+    passable = true;
+    hasCharacter = false;
+}
+
 void Empty::printSpaceTop()
 {
     cout << "   ";
@@ -24,7 +34,10 @@ Empty::~Empty()
 {
 }
 
-void Empty::interact(Inventory* playersInventory)
+void Empty::interact(Inventory *playersInventory)
 {
-
+}
+void Empty::changeToDefaultSymbol()
+{
+    printSymbol = " ";
 }

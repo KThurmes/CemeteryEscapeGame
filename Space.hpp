@@ -21,7 +21,6 @@ protected:
     //bool collision;
     bool spawnGhostEvent;
 
-
 public:
     Space();
     virtual void printSpaceTop() = 0;
@@ -49,7 +48,7 @@ public:
     string getSpaceType();
     bool getSpawnGhost();
     void setSpawnGhost(bool);
-
+    virtual void changeToDefaultSymbol() = 0;
 };
 
 #endif

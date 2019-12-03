@@ -27,8 +27,6 @@ public:
     void printGameBoard();
     void deleteGame();
     void turn();
-    //void setPlayer(int, int);
-    //void setSister(int, int);
     void setCharacter(Character *, int, int);
     void setCharacter(Character *, Space *);
     void interaction(Space *);
@@ -39,5 +37,6 @@ public:
     void spawnGhost(Space *);
     bool checkGameOver();
     void printPlayerHealth();
+    void moveCharacter(Character *, Space *);
 };
 #endif

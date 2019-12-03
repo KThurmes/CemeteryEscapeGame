@@ -12,5 +12,6 @@ public:
     void printSpaceMiddle();
     void printSpaceBottom();
     void interact(Inventory *);
+    void changeToDefaultSymbol();
 };
 #endif
