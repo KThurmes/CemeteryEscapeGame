@@ -6,6 +6,8 @@
 #include <ctime>
 #include "Key.hpp"
 #include "Sheet.hpp"
+#include <list>
+#include "Ghost.hpp"
 using std::cout;
 using std::endl;
 
@@ -105,19 +107,13 @@ void Game::turn()
 
 void Game::interaction(Space *location)
 {
-    //###TODO change when multiple characters are introduced. Search Character* list for which character is at the given location.
+    //###TODO change when multiple characters are introduced.
+    //Search Character* list for which character is at the given location.
+
     //int damage = sister.interact();
     sister.interact();
     //player.takeDamage(damage);
 }
-
-/* 
-void interactionCheck(){
-    bool hasKey = player.hasKey();
-    bool hasSheet = player.hasSheet();
-    string playerLocation = 
-    if(player.hasKey() && player.getLocation()->getSpaceType()=="fence"
-} */
 
 void Game::showBackpackContents()
 {
@@ -129,4 +125,11 @@ void Game::showBackpackContents()
 void Game::printBoardKey()
 {
     gb.printKey();
+}
+
+void Game::spawnGhost(int row, int col)
+{
+    Ghost *newGhost = new Ghost();
+    setCharacter(newGhost, row, col);
+    charList.push_back(newGhost);
 }

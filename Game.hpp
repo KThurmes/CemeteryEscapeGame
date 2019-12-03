@@ -5,6 +5,9 @@
 #include "Space.hpp"
 #include "Sister.hpp"
 #include "Character.hpp"
+#include "Item.hpp"
+#include <list>
+using std::list;
 
 class Game
 {
@@ -12,8 +15,9 @@ private:
     Player player;
     Sister sister;
     GameBoard gb;
+    list<Character *> charList;
+    list<Item *> itemList;
     bool gameOver;
-    Character *charList;
     bool playerHasSheet;
     bool playerHasKey;
 
@@ -29,5 +33,6 @@ public:
     void interactionCheck();
     void showBackpackContents();
     void printBoardKey();
+    void spawnGhost(int, int);
 };
 #endif

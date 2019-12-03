@@ -2,10 +2,12 @@
 #define SISTER_HPP
 #include "NPC.hpp"
 
-class Sister:public NPC{
+class Sister : public NPC
+{
 
 private:
-bool found;
+    bool found;
+
 public:
     Sister();
     ~Sister();

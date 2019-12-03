@@ -17,10 +17,10 @@ protected:
     bool passable;
     string printSymbol;
     int idNum;
-    Item* item;
+    Item *item;
     //Character* character;
     string spaceType;
-
+    bool collision;
 
 public:
     Space();
@@ -42,9 +42,9 @@ public:
     bool getHasCharacter();
     void setIDNum(int);
     int getIDNum();
-    virtual void interact(Inventory*) = 0;
-    void dropItem(Item*);
-    Item* pickUpItem();
+    virtual void interact(Inventory *) = 0;
+    void dropItem(Item *);
+    Item *pickUpItem();
     bool hasItem();
     string getSpaceType();
 };
