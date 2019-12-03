@@ -65,6 +65,7 @@ void Gravestone::interact(Inventory *playersInventory)
     }
 }
 
-void Gravestone::setHasKey(bool key){
+void Gravestone::setHasKey(bool key)
+{
     this->hasKey = key;
 }

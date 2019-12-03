@@ -15,6 +15,7 @@ public:
     void printGameBoard();
     void deleteGameBoard();
     Space *getSpaceAt(int, int);
+    void printKey();
 };
 
 #endif

@@ -22,6 +22,7 @@ void Character::setLocation(Space *theSpace)
     location->setPrintSymbol(symbol);
 }
 
-Space* Character::getLocation(){
+Space *Character::getLocation()
+{
     return location;
 }

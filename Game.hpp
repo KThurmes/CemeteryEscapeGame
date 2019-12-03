@@ -25,9 +25,9 @@ public:
     void setPlayer(int, int);
     void setSister(int, int);
     void setCharacter(Character *, int, int);
-    void interaction(Space*);
+    void interaction(Space *);
     void interactionCheck();
-
-
+    void showBackpackContents();
+    void printBoardKey();
 };
 #endif

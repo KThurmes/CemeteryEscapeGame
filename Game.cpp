@@ -12,14 +12,15 @@ using std::endl;
 Game::Game()
 {
     srand(time(NULL));
-    setPlayer(1,7);
-    setSister(3,3);
+    setPlayer(1, 7);
+    setSister(3, 3);
     Sheet *sheet = new Sheet();
     //Key *key = new Key();
     sister.pickUpItem(sheet);
 }
 
-void Game::setSister(int row, int col){
+void Game::setSister(int row, int col)
+{
     Space *theSpace = gb.getSpaceAt(row, col);
     theSpace->setPrintSymbol(sister.getSymbol());
     theSpace->setHasCharacter(true);
@@ -65,30 +66,32 @@ void Game::turn()
     else
     {
         //Player makes their move
-        Space* charSpace = player.move();
+        Space *charSpace = player.move();
 
         //Player interacts with any characters they bumped into
-        if(charSpace != 0){
+        if (charSpace != 0)
+        {
             interaction(charSpace);
         }
 
         //Pick up any items that are lying around
-        Item* pickedUp = player.getLocation()->pickUpItem();
-        if (pickedUp !=0){
+        Item *pickedUp = player.getLocation()->pickUpItem();
+        if (pickedUp != 0)
+        {
             int success = player.getInventory()->addItem(pickedUp);
-            if(success == 0){
+            if (success == 0)
+            {
                 player.getLocation()->dropItem(pickedUp);
             }
         }
 
         //Check if sister has been found
-        if (!sister.getFound()){
+        if (!sister.getFound())
+        {
             //sister makes her move
             sister.move();
         }
- 
 
-        
         //update health
 
         //update foundSister
@@ -100,7 +103,8 @@ void Game::turn()
     }
 }
 
-void Game::interaction (Space* location){
+void Game::interaction(Space *location)
+{
     //###TODO change when multiple characters are introduced. Search Character* list for which character is at the given location.
     //int damage = sister.interact();
     sister.interact();
@@ -114,3 +118,15 @@ void interactionCheck(){
     string playerLocation = 
     if(player.hasKey() && player.getLocation()->getSpaceType()=="fence"
 } */
+
+void Game::showBackpackContents()
+{
+    Inventory *theBackpack = player.getInventory();
+    cout << "Here is a list of items you have in your backpack:\n";
+    theBackpack->showItems();
+}
+
+void Game::printBoardKey()
+{
+    gb.printKey();
+}

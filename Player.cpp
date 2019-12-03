@@ -14,7 +14,7 @@ Player::~Player()
 {
 }
 
-Space* Player::move()
+Space *Player::move()
 {
     cout << "In which direction would you like your player to go?" << endl;
     cout << "0: Up" << endl;
@@ -57,7 +57,7 @@ Space* Player::move()
 
     if (destination != 0)
     {
-        Inventory* inventory = &inv;
+        Inventory *inventory = &inv;
         //Make sure the space is passable
         if (!destination->getPassable())
         {
@@ -83,23 +83,27 @@ Space* Player::move()
     }
 }
 
-Inventory* Player::getInventory(){
-    Inventory* pInv = &inv;
+Inventory *Player::getInventory()
+{
+    Inventory *pInv = &inv;
     return pInv;
 }
 
-void Player::pickUpItem(Item* toBePickedUp){
+void Player::pickUpItem(Item *toBePickedUp)
+{
     int success = inv.addItem(toBePickedUp);
-    if(success == 0){
+    if (success == 0)
+    {
         location->dropItem(toBePickedUp);
     }
 }
 
-
-bool Player::hasSheet(){
-return (inv.findItem("sheet")< inv.getMaxItems());
+bool Player::hasSheet()
+{
+    return (inv.findItem("sheet") < inv.getMaxItems());
 }
 
-bool Player::hasKey(){
-return (inv.findItem("key")< inv.getMaxItems());
+bool Player::hasKey()
+{
+    return (inv.findItem("key") < inv.getMaxItems());
 }

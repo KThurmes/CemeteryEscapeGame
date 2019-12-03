@@ -13,8 +13,8 @@ using std::endl;
 
 GameBoard::GameBoard()
 {
-    nCols = 10;
-    nRows = 11;
+    nCols = 14;
+    nRows = 7;
     spaces = new Space **[nRows];
     int k = 0;
 
@@ -42,7 +42,7 @@ GameBoard::GameBoard()
             {
                 spaces[i][j] = new Gravestone();
             }
-            else if (i == 7 && j == 3)
+            else if (i == 5 && j == 3)
             {
                 spaces[i][j] = new Gravestone();
             }
@@ -55,7 +55,7 @@ GameBoard::GameBoard()
                 spaces[i][j] = new Gravestone();
             }
             //This last one has the key.
-            else if (i == 9 && j == 8)
+            else if (i == 6 && j == 8)
             {
                 Key *key = new Key();
                 Gravestone *grave = new Gravestone();
@@ -174,4 +174,27 @@ void GameBoard::deleteGameBoard()
 Space *GameBoard::getSpaceAt(int row, int col)
 {
     return spaces[row][col];
+}
+
+void GameBoard::printKey()
+{
+    cout << endl
+         << endl;
+    cout << "|, --";
+    cout << "        ";
+    cout << "Space boundaries" << endl;
+    cout << "X";
+    cout << "            ";
+    cout << "Player location" << endl;
+    cout << "---";
+    cout << "          ";
+    cout << "Fence" << endl;
+    cout << "===";
+    cout << "          ";
+    cout << "Gate" << endl;
+    cout << "±";
+    cout << "            ";
+    cout << "Gravestone";
+    cout << endl
+         << endl;
 }
