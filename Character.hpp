@@ -9,11 +9,11 @@ protected:
     string symbol;
 
 public:
-    virtual void pickUpItem(Item*) = 0;
+    virtual void pickUpItem(Item *) = 0;
     string getSymbol();
     virtual ~Character(){};
     void setLocation(Space *);
-    Space* getLocation();
+    Space *getLocation();
 };
 
 #endif

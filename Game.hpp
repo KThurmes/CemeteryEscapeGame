@@ -6,6 +6,7 @@
 #include "Sister.hpp"
 #include "Character.hpp"
 #include "Item.hpp"
+#include "NPC.hpp"
 #include <list>
 using std::list;
 
@@ -15,7 +16,7 @@ private:
     Player player;
     Sister sister;
     GameBoard gb;
-    list<Character *> charList;
+    list<NPC *> NPCList;
     list<Item *> itemList;
     bool gameOver;
     bool playerHasSheet;

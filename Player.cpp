@@ -8,6 +8,7 @@ Player::Player()
 {
     location = 0;
     symbol = 'x';
+    health = 5;
 }
 
 Player::~Player()
@@ -106,4 +107,14 @@ bool Player::hasSheet()
 bool Player::hasKey()
 {
     return (inv.findItem("key") < inv.getMaxItems());
+}
+
+void Player::takeDamage(int damage)
+{
+    health += damage;
+}
+
+int Player::getHealth()
+{
+    return health;
 }

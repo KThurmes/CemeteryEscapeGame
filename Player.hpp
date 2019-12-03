@@ -8,18 +8,20 @@ class Player : public Character
 {
 private:
     Inventory inv;
-    //int health;
+    int health;
 
 public:
     Player();
     ~Player();
-    Space* move();
+    Space *move();
     //void takeDamage(int);
-    Inventory* getInventory();
-    void pickUpItem(Item*);
+    Inventory *getInventory();
+    void pickUpItem(Item *);
     bool hasKey();
     bool hasSheet();
-
+    int interact();
+    void takeDamage(int);
+    int getHealth();
 };
 
 #endif

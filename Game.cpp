@@ -8,6 +8,7 @@
 #include "Sheet.hpp"
 #include <list>
 #include "Ghost.hpp"
+#include "NPC.hpp"
 using std::cout;
 using std::endl;
 
@@ -109,10 +110,16 @@ void Game::interaction(Space *location)
 {
     //###TODO change when multiple characters are introduced.
     //Search Character* list for which character is at the given location.
-
-    //int damage = sister.interact();
-    sister.interact();
-    //player.takeDamage(damage);
+    int damage = 0;
+    for (auto it = NPCList.begin(); it != NPCList.end(); ++it)
+    {
+        NPC *theCharacter = *it;
+        if (theCharacter->getLocation() == location)
+        {
+            damage = theCharacter->interact();
+        }
+    }
+    player.takeDamage(damage);
 }
 
 void Game::showBackpackContents()
@@ -131,5 +138,5 @@ void Game::spawnGhost(int row, int col)
 {
     Ghost *newGhost = new Ghost();
     setCharacter(newGhost, row, col);
-    charList.push_back(newGhost);
+    NPCList.push_back(newGhost);
 }
