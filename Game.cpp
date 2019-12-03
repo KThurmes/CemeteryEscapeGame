@@ -14,62 +14,40 @@ using std::endl;
 
 Game::Game()
 {
-    srand(time(NULL));
-
     //Put the player in their starting place.
     Player *pPlayer = &player;
-    setCharacter(pPlayer, 1, 7);
+    moveCharacter(pPlayer, 1, 7);
 
     //Set up the sister
     NPC *sis = &sister;
-    setCharacter(sis, 3, 3);
+    moveCharacter(sis, 3, 3);
     NPCList.push_back(sis);
 
     //Give the sister the sheet to drop
-    Sheet sheet;
-    Sheet *pSheet = &sheet;
-    itemList.push_back(pSheet);
-    sister.pickUpItem(pSheet);
+    Sheet *sheet = new Sheet();
+    itemList.push_back(sheet);
+    sister.pickUpItem(sheet);
 }
 
-/* void Game::setSister(int row, int col)
+void Game::moveCharacter(Character *character, int row, int col)
 {
     Space *theSpace = gb.getSpaceAt(row, col);
-    theSpace->setPrintSymbol(sister.getSymbol());
-    theSpace->setHasCharacter(true);
-    sister.setLocation(theSpace);
-} */
-
-/* void Game::setPlayer(int row, int col)
-{
-
-    Space *theSpace = gb.getSpaceAt(row, col);
-    theSpace->setPrintSymbol(player.getSymbol());
-    theSpace->setHasCharacter(true);
-    player.setLocation(theSpace);
-} */
-
-void Game::setCharacter(Character *character, int row, int col)
-{
-    Space *theSpace = gb.getSpaceAt(row, col);
-    setCharacter(character, theSpace);
-}
-
-void Game::setCharacter(Character *character, Space *theSpace)
-{
-    theSpace->setPrintSymbol(character->getSymbol());
-    theSpace->setHasCharacter(true);
-    character->setLocation(theSpace);
+    moveCharacter(character, theSpace);
 }
 
 void Game::moveCharacter(Character *character, Space *destination)
 {
-    //Pick character up from where they were
-    character->getLocation()->setHasCharacter(false);
-    character->getLocation()->changeToDefaultSymbol();
+    if (character->getLocation() != 0)
+    {
+        //Pick character up from where they were
+        character->getLocation()->setHasCharacter(false);
+        character->getLocation()->changeToDefaultSymbol();
+    }
 
     //Move character to somewhere else
-    setCharacter(character, destination);
+    destination->setPrintSymbol(character->getSymbol());
+    destination->setHasCharacter(true);
+    character->setLocation(destination);
 }
 
 void Game::printGameBoard()
@@ -79,11 +57,6 @@ void Game::printGameBoard()
 
 void Game::turn()
 {
-    /*     //check if game is over
-    if (gameOver == true)
-    {
-        cout << "The game is over." << endl;
-    } */
 
     //Player makes their move
     Space *destination = player.move();
@@ -97,10 +70,8 @@ void Game::turn()
 
     else
     {
-        cout << "The destination is " << destination->getIDNum() << "!\n";
         if (destination == player.getLocation())
         {
-            cout << "Staying put!\n";
             //Stay where you are
         }
 
@@ -108,20 +79,17 @@ void Game::turn()
         else if (destination->getHasCharacter())
         {
             interaction(destination);
-            cout << "The destination has a character!\n";
         }
 
         //If the space isn't passable, interact with it
         else if (!destination->getPassable())
         {
-            cout << "The destination is impassible!\n";
             //Interact with the space
             destination->interact(player.getInventory());
 
             //See if game needs to spawn a ghost at destination
             if (destination->getSpawnGhost())
             {
-                cout << "Spawning a ghost!\n";
                 spawnGhost(destination);
             }
         }
@@ -129,7 +97,6 @@ void Game::turn()
         //Else, there's no one there and it's passable. Player moves.
         else
         {
-            cout << "moving to space " << destination->getIDNum() << "!\n";
             moveCharacter(&player, destination);
         }
     }
@@ -153,6 +120,12 @@ void Game::turn()
     {
         //Sister makes her move
         sister.move();
+    }
+
+    for (auto it = NPCList.begin(); it != NPCList.end(); ++it)
+    {
+        NPC *theCharacter = *it;
+        theCharacter->move();
     }
 
     //print screen
@@ -198,7 +171,7 @@ void Game::spawnGhost(int row, int col)
 void Game::spawnGhost(Space *destination)
 {
     Ghost *newGhost = new Ghost();
-    setCharacter(newGhost, destination);
+    moveCharacter(newGhost, destination);
     NPCList.push_back(newGhost);
     destination->setSpawnGhost(false);
 }

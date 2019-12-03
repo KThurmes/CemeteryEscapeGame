@@ -18,7 +18,6 @@ private:
     GameBoard gb;
     list<NPC *> NPCList;
     list<Item *> itemList;
-    bool gameOver;
     bool playerHasSheet;
     bool playerHasKey;
 
@@ -27,8 +26,6 @@ public:
     void printGameBoard();
     void deleteGame();
     void turn();
-    void setCharacter(Character *, int, int);
-    void setCharacter(Character *, Space *);
     void interaction(Space *);
     void interactionCheck();
     void showBackpackContents();
@@ -38,5 +35,6 @@ public:
     bool checkGameOver();
     void printPlayerHealth();
     void moveCharacter(Character *, Space *);
+    void moveCharacter(Character *, int, int);
 };
 #endif

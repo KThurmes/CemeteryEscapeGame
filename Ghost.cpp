@@ -3,6 +3,8 @@
 #include "Character.hpp"
 #include <iostream>
 #include "getRandomInt.hpp"
+#include <cstdlib>
+#include <ctime>
 using std::cout;
 using std::endl;
 
@@ -18,6 +20,7 @@ Ghost::~Ghost()
 
 void Ghost::move()
 {
+    srand(time(NULL));
     //Randomly choose to turn or step
     int moveOption = getRandomInt(0, 1);
 

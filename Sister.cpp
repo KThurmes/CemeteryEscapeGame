@@ -3,6 +3,8 @@
 #include "Character.hpp"
 #include <iostream>
 #include "getNumberBetween.hpp"
+#include <cstdlib>
+#include <ctime>
 using std::cout;
 using std::endl;
 
@@ -19,24 +21,27 @@ Sister::~Sister()
 
 void Sister::move()
 {
-    //Randomly choose to turn or step
-    int moveOption = getRandomInt(0, 1);
-
-    //turn
-    if (moveOption == 0)
+    if (!found)
     {
-        //choose to turn right or left
-        moveOption = getRandomInt(0, 1);
-        turn(moveOption);
-    }
-    //step forward
-    else if (moveOption == 1)
-    {
-        step();
-    }
-    else
-    {
-        //something went wrong
+        srand(time(NULL));
+        //Randomly choose to turn or step
+        int moveOption = getRandomInt(0, 1);
+        //turn
+        if (moveOption == 0)
+        {
+            //choose to turn right or left
+            moveOption = getRandomInt(0, 1);
+            turn(moveOption);
+        }
+        //step forward
+        else if (moveOption == 1)
+        {
+            step();
+        }
+        else
+        {
+            //something went wrong
+        }
     }
 }
 
