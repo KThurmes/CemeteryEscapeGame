@@ -197,6 +197,15 @@ void GameBoard::printKey()
     cout << "±";
     cout << "            ";
     cout << "Gravestone";
+    cout << "#";
+    cout << "            ";
+    cout << "Item";
+    cout << "G";
+    cout << "            ";
+    cout << "Ghost";
+    cout << "g";
+    cout << "            ";
+    cout << "???";
     cout << endl
          << endl;
 }
