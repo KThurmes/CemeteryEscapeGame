@@ -175,7 +175,6 @@ void Game::printBoardKey()
 
 void Game::spawnGhost(int row, int col)
 {
-    Ghost *newGhost = new Ghost();
     Space *destination = gb.getSpaceAt(row, col);
     spawnGhost(destination);
 }
@@ -204,5 +203,12 @@ bool Game::checkGameOver()
     if (sister.getFound() && player.getPastFence())
     {
         cout << "Congratulations! You've found your sister and now you've gotten home in time for mom's spaghetti!" << endl;
+        return 1;
     }
+    return 0;
+}
+
+void Game::printPlayerHealth()
+{
+    cout << "Player health: " << player.getHealth() << endl;
 }

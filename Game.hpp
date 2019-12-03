@@ -38,5 +38,6 @@ public:
     void spawnGhost(int, int);
     void spawnGhost(Space *);
     bool checkGameOver();
+    void printPlayerHealth();
 };
 #endif

@@ -79,7 +79,12 @@ void Menu::gameOptions()
     }
     else if (selection == 3)
     {
+        game.printBoardKey();
         gameOptions();
+    }
+    else if (selection == 4)
+    {
+        game.printPlayerHealth();
     }
     else
     {
