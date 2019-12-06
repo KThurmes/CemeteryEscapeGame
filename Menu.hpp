@@ -5,14 +5,16 @@
 class Menu
 {
 private:
-    Game game;
+    Game *game;
 
 public:
+    Menu();
     void welcome();
     void startMenu();
     void launchGame();
     void backstory();
     void gameOptions();
+    void gameInfoMenu();
 };
 
 #endif

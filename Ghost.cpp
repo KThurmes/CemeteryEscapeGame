@@ -18,7 +18,7 @@ Ghost::~Ghost()
 {
 }
 
-void Ghost::move()
+Space *Ghost::move()
 {
     srand(time(NULL));
     //Randomly choose to turn or step
@@ -27,18 +27,16 @@ void Ghost::move()
     //turn
     if (moveOption == 0)
     {
+        cout << "Ghost chose to turn" << endl;
         //choose to turn right or left
         moveOption = getRandomInt(0, 1);
         turn(moveOption);
+        return location;
     }
     //step forward
-    else if (moveOption == 1)
-    {
-        step();
-    }
     else
     {
-        //something went wrong
+        return step();
     }
 }
 

@@ -3,16 +3,19 @@
 #include "Character.hpp"
 #include "Item.hpp"
 
-class NPC: public Character{
-private:
+class NPC : public Character
+{
+protected:
     int direction;
-    Item* carriedItem;
+    Item *carriedItem;
+
 public:
-    void pickUpItem(Item*);
-    virtual void move() = 0;
+    NPC();
+    void pickUpItem(Item *);
+    virtual Space *move() = 0;
     void turn(int);
     ~NPC(){};
-    void step();
+    Space *step();
     virtual int interact() = 0;
     void disappear();
     void dropItem();

@@ -19,14 +19,29 @@ Game::Game()
     moveCharacter(pPlayer, 1, 7);
 
     //Set up the sister
-    NPC *sis = &sister;
-    moveCharacter(sis, 3, 3);
-    NPCList.push_back(sis);
+    //NPC *sis = &sister;
+    moveCharacter(&sister, 3, 3);
+    //NPCList.push_back(sis);
 
     //Give the sister the sheet to drop
     Sheet *sheet = new Sheet();
     itemList.push_back(sheet);
     sister.pickUpItem(sheet);
+
+    //Drop the key on the gravestone
+    Key *key = new Key();
+    itemList.push_back(key);
+    //Horrible coding, but the gravestone already has the hasKey flag set.
+    Space *gravestoneSpace = gb.getSpaceAt(6, 8);
+    gravestoneSpace->dropItem(key);
+
+    //Create starter Ghosts
+    Ghost *newGhost1 = new Ghost();
+    Ghost *newGhost2 = new Ghost();
+    moveCharacter(newGhost1, 1, 1);
+    moveCharacter(newGhost2, 3, 10);
+    NPCList.push_back(newGhost1);
+    NPCList.push_back(newGhost2);
 
     gameOver = false;
     playerHasKey = false;
@@ -124,12 +139,17 @@ void Game::turn()
         }
 
         //Sister makes her move
-        sister.move();
+        if (!sister.getFound())
+        {
+            destination = sister.move();
+            moveCharacter(&sister, destination);
+        }
 
         for (auto it = NPCList.begin(); it != NPCList.end(); ++it)
         {
             NPC *theCharacter = *it;
-            theCharacter->move();
+            destination = theCharacter->move();
+            moveCharacter(theCharacter, destination);
         }
     }
     //print screen
@@ -140,13 +160,22 @@ void Game::interaction(Space *location)
 {
     //Search Character* list for which character is at the given location.
     int damage = 0;
-    for (auto it = NPCList.begin(); it != NPCList.end(); ++it)
+    //Check to see if it's the sister
+    if (sister.getLocation() == location)
     {
-        NPC *theCharacter = *it;
-        if (theCharacter->getLocation() == location)
+        damage = sister.interact();
+    }
+    //If not, see what other character is there.
+    else
+    {
+        for (auto it = NPCList.begin(); it != NPCList.end(); ++it)
         {
-            //Interact with the character at the location
-            damage = theCharacter->interact();
+            NPC *theCharacter = *it;
+            if (theCharacter->getLocation() == location)
+            {
+                //Interact with the character at the location
+                damage = theCharacter->interact();
+            }
         }
     }
 
@@ -182,6 +211,18 @@ void Game::spawnGhost(Space *destination)
 
 void Game::deleteGame()
 {
+    for (auto it = NPCList.begin(); it != NPCList.end(); ++it)
+    {
+        NPC *theCharacter = *it;
+        delete theCharacter;
+    }
+
+    for (auto it = itemList.begin(); it != itemList.end(); ++it)
+    {
+        Item *theItem = *it;
+        delete theItem;
+    }
+
     gb.deleteGameBoard();
 }
 

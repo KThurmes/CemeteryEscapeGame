@@ -19,29 +19,26 @@ Sister::~Sister()
 {
 }
 
-void Sister::move()
+Space *Sister::move()
 {
-    if (!found)
+
+    srand(time(NULL));
+
+    //cout << "Direction before moving: " << direction << endl;
+    //Randomly choose to turn or step
+    int moveOption = getRandomInt(0, 1);
+    //turn
+    if (moveOption == 0)
     {
-        srand(time(NULL));
-        //Randomly choose to turn or step
-        int moveOption = getRandomInt(0, 1);
-        //turn
-        if (moveOption == 0)
-        {
-            //choose to turn right or left
-            moveOption = getRandomInt(0, 1);
-            turn(moveOption);
-        }
-        //step forward
-        else if (moveOption == 1)
-        {
-            step();
-        }
-        else
-        {
-            //something went wrong
-        }
+        //choose to turn right or left
+        moveOption = getRandomInt(0, 1);
+        turn(moveOption);
+        return location;
+    }
+    //step forward
+    else
+    {
+        return step();
     }
 }
 

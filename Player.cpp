@@ -17,36 +17,35 @@ Player::~Player()
 
 Space *Player::move()
 {
-    cout << "In which direction would you like your player to go?" << endl;
-    cout << "0: Up" << endl;
-    cout << "1: Right" << endl;
-    cout << "2: Down" << endl;
-    cout << "3: Left" << endl;
-    cout << "4: Don't move" << endl;
 
-    int selection = getNumberBetween(0, 4);
+    cout << "In which direction would you like your player to move?" << endl;
+    cout << "1. Up" << endl;
+    cout << "2. Right" << endl;
+    cout << "3. Down" << endl;
+    cout << "4. Left" << endl;
+    cout << "5. Don't move" << endl;
+    int selection = getNumberBetween(1, 5);
 
     //Space *destination;
-
-    if (selection == 0)
+    if (selection == 1)
     {
         //check up
         return location->getTop();
     }
 
-    else if (selection == 1)
+    else if (selection == 2)
     {
         //check right
         return location->getRight();
     }
 
-    else if (selection == 2)
+    else if (selection == 3)
     {
         //check down
         return location->getBottom();
     }
 
-    else if (selection == 3)
+    else if (selection == 4)
     {
         //check left
         return location->getLeft();
@@ -55,33 +54,6 @@ Space *Player::move()
     {
         return location;
     }
-
-    /*  if (destination != 0)
-    {
-        Inventory *inventory = &inv;
-        //Make sure the space is passable
-        if (!destination->getPassable())
-        {
-            destination->interact(inventory);
-            return 0;
-        }
-        //If there's a character there already, don't move.
-        else if (destination->getHasCharacter())
-        {
-            cout << "There's another character there!" << endl;
-            return destination;
-        }
-        else
-        {
-            setLocation(destination);
-            return 0;
-        }
-    }
-    else
-    {
-        cout << "Cannot go in that direction!" << endl;
-        return move();
-    } */
 }
 
 Inventory *Player::getInventory()

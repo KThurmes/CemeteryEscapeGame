@@ -8,6 +8,7 @@ using std::endl;
 
 Gravestone::Gravestone()
 {
+    hasKey = false;
     passable = false;
     printSymbol = "±";
 }

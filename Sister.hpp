@@ -11,7 +11,7 @@ private:
 public:
     Sister();
     ~Sister();
-    void move();
+    Space *move();
     bool getFound();
     int interact();
 };

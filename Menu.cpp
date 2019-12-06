@@ -5,6 +5,10 @@
 using std::cout;
 using std::endl;
 
+Menu::Menu()
+{
+}
+
 void Menu::welcome()
 {
     cout << "Welcome!" << endl;
@@ -19,6 +23,7 @@ void Menu::startMenu()
     int selection = getNumberBetween(1, 2);
     if (selection == 1)
     {
+        game = new Game();
         launchGame();
     }
     else
@@ -30,7 +35,7 @@ void Menu::startMenu()
 void Menu::launchGame()
 {
     backstory();
-    game.printGameBoard();
+    game->printGameBoard();
     gameOptions();
 }
 
@@ -55,11 +60,13 @@ void Menu::backstory()
 
 void Menu::gameOptions()
 {
-    if (game.getGameOver())
+    if (game->getGameOver())
     {
-        game.deleteGame();
+        game->deleteGame();
+        delete game;
         startMenu();
     }
+
     else
     {
         cout << "What would you like to do?" << endl;
@@ -73,27 +80,28 @@ void Menu::gameOptions()
 
         if (selection == 1)
         {
-            game.turn();
+            game->turn();
             gameOptions();
         }
         else if (selection == 2)
         {
-            game.showBackpackContents();
+            game->showBackpackContents();
             gameOptions();
         }
         else if (selection == 3)
         {
-            game.printBoardKey();
+            game->printBoardKey();
             gameOptions();
         }
         else if (selection == 4)
         {
-            game.printPlayerHealth();
+            game->printPlayerHealth();
             gameOptions();
         }
         else
         {
-            game.deleteGame();
+            game->deleteGame();
+            delete game;
         }
     }
 }

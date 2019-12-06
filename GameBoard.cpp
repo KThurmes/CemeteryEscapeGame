@@ -57,9 +57,7 @@ GameBoard::GameBoard()
             //This last one has the key.
             else if (i == 6 && j == 8)
             {
-                Key *key = new Key();
                 Gravestone *grave = new Gravestone();
-                grave->dropItem(key);
                 grave->setHasKey(true);
                 spaces[i][j] = grave;
             }

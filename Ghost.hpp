@@ -8,7 +8,7 @@ private:
 public:
     Ghost();
     ~Ghost();
-    void move();
+    Space *move();
     int interact();
 };
 #endif
