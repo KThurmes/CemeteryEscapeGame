@@ -36,7 +36,10 @@ void Menu::startMenu()
 void Menu::launchGame()
 {
     backstory();
-    game->printGameBoard();
+    string henry = game->buildPrintString();
+    cout << "Here's the built string: \n";
+    cout << henry;
+    //game->printGameBoard();
     gameOptions();
 }
 

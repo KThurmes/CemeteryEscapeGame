@@ -7,8 +7,10 @@
 #include "Character.hpp"
 #include "Item.hpp"
 #include "NPC.hpp"
+#include <string>
 #include <list>
 using std::list;
+using std::string;
 
 class Game
 {
@@ -38,5 +40,6 @@ public:
     void moveCharacter(Character *, Space *);
     void moveCharacter(Character *, int, int);
     bool getGameOver() { return gameOver; };
+    string buildPrintString();
 };
 #endif

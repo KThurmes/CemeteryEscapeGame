@@ -2,8 +2,10 @@
 #include "Empty.hpp"
 #include "getNumberBetween.hpp"
 #include <iostream>
+#include <string>
 using std::cout;
 using std::endl;
+using std::string;
 
 Empty::Empty()
 {
@@ -15,23 +17,26 @@ Empty::Empty()
     hasCharacter = false;
 }
 
-void Empty::printSpaceTop()
+string Empty::printSpaceTop()
 {
     cout << "   ";
+    return "   ";
 }
 
-void Empty::printSpaceMiddle()
+string Empty::printSpaceMiddle()
 {
     if (!hasCharacter && item != 0)
     {
         printSymbol = "#";
     }
     cout << " " << printSymbol << " ";
+    return " " + printSymbol + " ";
 }
 
-void Empty::printSpaceBottom()
+string Empty::printSpaceBottom()
 {
     cout << "   ";
+    return "   ";
 }
 
 Empty::~Empty()

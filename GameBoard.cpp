@@ -118,44 +118,61 @@ GameBoard::GameBoard()
     }
 }
 
-void GameBoard::printGameBoard()
+string GameBoard::printGameBoard()
 {
+    string boardVis = "\n";
     cout << endl;
     for (int i = 0; i < nRows; ++i)
     {
         for (int j = 0; j < nCols; ++j)
         {
+            boardVis += "-----";
             cout << "-----";
         }
         cout << endl;
+        boardVis += "\n";
         for (int j = 0; j < nCols; ++j)
         {
             cout << "|";
-            spaces[i][j]->printSpaceTop();
+            boardVis += "|";
+            //spaces[i][j]->printSpaceTop();
+            boardVis += spaces[i][j]->printSpaceTop();
             cout << "|";
+            boardVis += "|";
         }
         cout << endl;
+        boardVis += "\n";
         for (int j = 0; j < nCols; ++j)
         {
             cout << "|";
-            spaces[i][j]->printSpaceMiddle();
+            boardVis += "|";
+            boardVis += spaces[i][j]->printSpaceMiddle();
             cout << "|";
+            boardVis += "|";
         }
         cout << endl;
+        boardVis += "\n";
         for (int j = 0; j < nCols; ++j)
         {
             cout << "|";
-            spaces[i][j]->printSpaceBottom();
+            boardVis += "|";
+            boardVis += spaces[i][j]->printSpaceBottom();
             cout << "|";
+            boardVis += "|";
         }
         cout << endl;
+        boardVis += "\n";
         for (int j = 0; j < nCols; ++j)
         {
             cout << "-----";
+            boardVis += "-----";
         }
         cout << endl;
+        boardVis += "\n";
     }
     cout << endl;
+    boardVis += "\n";
+    return boardVis;
 }
 
 void GameBoard::deleteGameBoard()
@@ -206,4 +223,14 @@ void GameBoard::printKey()
     cout << "???";
     cout << endl
          << endl;
+}
+
+int GameBoard::getNRows()
+{
+    return nRows;
+}
+
+int GameBoard::getNCols()
+{
+    return nCols;
 }

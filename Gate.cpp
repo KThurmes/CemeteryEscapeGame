@@ -3,8 +3,10 @@
 #include <iostream>
 #include "getNumberBetween.hpp"
 #include "enterToContinue.hpp"
+#include <string>
 using std::cout;
 using std::endl;
+using std::string;
 
 Gate::Gate()
 {
@@ -16,17 +18,20 @@ Gate::~Gate()
 {
 }
 
-void Gate::printSpaceTop()
+string Gate::printSpaceTop()
 {
     cout << "   ";
+    return "   ";
 }
-void Gate::printSpaceMiddle()
+string Gate::printSpaceMiddle()
 {
     cout << "=" << printSymbol << "=";
+    return ("=" + printSymbol + "=");
 }
-void Gate::printSpaceBottom()
+string Gate::printSpaceBottom()
 {
     cout << "   ";
+    return "   ";
 }
 
 void Gate::interact(Inventory *playersInventory)

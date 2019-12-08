@@ -2,15 +2,17 @@
 #define FENCE_HPP
 #include "Space.hpp"
 #include "Inventory.hpp"
+#include <string>
+using std::string;
 class Fence : public Space
 {
 private:
 public:
     Fence();
     ~Fence();
-    void printSpaceTop();
-    void printSpaceMiddle();
-    void printSpaceBottom();
+    string printSpaceTop();
+    string printSpaceMiddle();
+    string printSpaceBottom();
     void interact(Inventory *);
     void changeToDefaultSymbol();
 };

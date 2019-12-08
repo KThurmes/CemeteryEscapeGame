@@ -4,9 +4,11 @@
 #include "getNumberBetween.hpp"
 #include "Inventory.hpp"
 #include "enterToContinue.hpp"
+#include <string>
 using std::cin;
 using std::cout;
 using std::endl;
+using std::string;
 
 Gravestone::Gravestone()
 {
@@ -17,17 +19,20 @@ Gravestone::Gravestone()
 Gravestone::~Gravestone()
 {
 }
-void Gravestone::printSpaceTop()
+string Gravestone::printSpaceTop()
 {
     cout << "   ";
+    return "   ";
 }
-void Gravestone::printSpaceMiddle()
+string Gravestone::printSpaceMiddle()
 {
     cout << " " << printSymbol << " ";
+    return (" " + printSymbol + " ");
 }
-void Gravestone::printSpaceBottom()
+string Gravestone::printSpaceBottom()
 {
     cout << "   ";
+    return "   ";
 }
 
 void Gravestone::interact(Inventory *playersInventory)

@@ -4,8 +4,10 @@
 #include "getNumberBetween.hpp"
 #include "Inventory.hpp"
 #include "enterToContinue.hpp"
+#include <string>
 using std::cout;
 using std::endl;
+using std::string;
 
 Fence::Fence()
 {
@@ -18,17 +20,20 @@ Fence::~Fence()
 {
 }
 
-void Fence::printSpaceTop()
+string Fence::printSpaceTop()
 {
     cout << "   ";
+    return "   ";
 }
-void Fence::printSpaceMiddle()
+string Fence::printSpaceMiddle()
 {
     cout << "-" << printSymbol << "-";
+    return ("-" + printSymbol + "-");
 }
-void Fence::printSpaceBottom()
+string Fence::printSpaceBottom()
 {
     cout << "   ";
+    return "   ";
 }
 
 void Fence::interact(Inventory *playersInventory)

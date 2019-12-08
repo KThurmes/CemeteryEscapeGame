@@ -2,15 +2,17 @@
 #define GATE_HPP
 #include "Space.hpp"
 #include "Inventory.hpp"
+#include <string>
+using std::string;
 class Gate : public Space
 {
 private:
 public:
     Gate();
     ~Gate();
-    void printSpaceTop();
-    void printSpaceMiddle();
-    void printSpaceBottom();
+    string printSpaceTop();
+    string printSpaceMiddle();
+    string printSpaceBottom();
     void interact(Inventory *);
     void changeToDefaultSymbol();
 };

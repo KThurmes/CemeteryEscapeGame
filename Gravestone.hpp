@@ -2,6 +2,8 @@
 #define GRAVESTONE_HPP
 #include "Space.hpp"
 #include "Inventory.hpp"
+#include <string>
+using std::string;
 class Gravestone : public Space
 {
 private:
@@ -13,9 +15,9 @@ private:
 public:
     Gravestone();
     ~Gravestone();
-    void printSpaceTop();
-    void printSpaceMiddle();
-    void printSpaceBottom();
+    string printSpaceTop();
+    string printSpaceMiddle();
+    string printSpaceBottom();
     void interact(Inventory *);
     void setHasKey(bool);
     void changeToDefaultSymbol();

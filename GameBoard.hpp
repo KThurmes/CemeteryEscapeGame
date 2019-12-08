@@ -1,7 +1,9 @@
 #ifndef GAMEBOARD_HPP
 #define GAMEBOARD_HPP
+#include <string>
 #include "Space.hpp"
 #include "Player.hpp"
+using std::string;
 
 class GameBoard
 {
@@ -12,10 +14,12 @@ private:
 
 public:
     GameBoard();
-    void printGameBoard();
+    string printGameBoard();
     void deleteGameBoard();
     Space *getSpaceAt(int, int);
     void printKey();
+    int getNCols();
+    int getNRows();
 };
 
 #endif

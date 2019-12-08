@@ -22,9 +22,9 @@ protected:
 
 public:
     Space();
-    virtual void printSpaceTop() = 0;
-    virtual void printSpaceMiddle() = 0;
-    virtual void printSpaceBottom() = 0;
+    virtual string printSpaceTop() = 0;
+    virtual string printSpaceMiddle() = 0;
+    virtual string printSpaceBottom() = 0;
     virtual ~Space(){};
     void setTop(Space *);
     void setRight(Space *);

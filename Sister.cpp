@@ -3,6 +3,7 @@
 #include "Character.hpp"
 #include <iostream>
 #include "getNumberBetween.hpp"
+#include "enterToContinue.hpp"
 #include <cstdlib>
 #include <ctime>
 using std::cout;
@@ -63,6 +64,7 @@ int Sister::interact()
     {
         cout << "Yeah, maybe not the best idea. Who knows what kinds of weirdos hang out in graveyards." << endl;
     }
+    enterToContinue();
 
     return 0;
 }

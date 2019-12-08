@@ -9,8 +9,10 @@
 #include <list>
 #include "Ghost.hpp"
 #include "NPC.hpp"
+#include <string>
 using std::cout;
 using std::endl;
+using std::string;
 
 Game::Game()
 {
@@ -19,9 +21,7 @@ Game::Game()
     moveCharacter(pPlayer, 1, 7);
 
     //Set up the sister
-    //NPC *sis = &sister;
     moveCharacter(&sister, 3, 3);
-    //NPCList.push_back(sis);
 
     //Give the sister the sheet to drop
     Sheet *sheet = new Sheet();
@@ -247,4 +247,15 @@ bool Game::checkGameOver()
 void Game::printPlayerHealth()
 {
     cout << "Player health: " << player.getHealth() << endl;
+}
+
+string Game::buildPrintString()
+{
+    string boardVis = "";
+    int boardRows = gb.getNRows();
+    int boardCols = gb.getNCols();
+
+    boardVis = gb.printGameBoard();
+    return boardVis;
+    //cout << boardVis;
 }
