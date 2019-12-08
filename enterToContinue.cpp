@@ -11,7 +11,8 @@ void enterToContinue()
 {
     string temp;
     cout << "Press \"enter\" to continue." << endl;
-    cin >> temp;
-    cin.clear();
+    //cin >> temp;
+    //cin.clear();
+    cin.get();
     cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 }
