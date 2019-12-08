@@ -10,6 +10,7 @@
 #include "Ghost.hpp"
 #include "NPC.hpp"
 #include <string>
+#include "enterToContinue.hpp"
 using std::cout;
 using std::endl;
 using std::string;
@@ -71,7 +72,8 @@ void Game::moveCharacter(Character *character, Space *destination)
 
 void Game::printGameBoard()
 {
-    gb.printGameBoard();
+    string boardVis = buildPrintString();
+    cout << boardVis;
 }
 
 void Game::turn()
@@ -117,6 +119,7 @@ void Game::turn()
         else
         {
             moveCharacter(&player, destination);
+            player.discoverSpaces();
         }
     }
 
@@ -239,6 +242,7 @@ bool Game::checkGameOver()
     {
         gameOver = true;
         cout << "Congratulations! You've found your sister and now you've gotten home in time for mom's spaghetti!" << endl;
+        enterToContinue();
         return 1;
     }
     return 0;
@@ -251,11 +255,6 @@ void Game::printPlayerHealth()
 
 string Game::buildPrintString()
 {
-    string boardVis = "";
-    int boardRows = gb.getNRows();
-    int boardCols = gb.getNCols();
-
-    boardVis = gb.printGameBoard();
+    string boardVis = gb.printGameBoard();
     return boardVis;
-    //cout << boardVis;
 }

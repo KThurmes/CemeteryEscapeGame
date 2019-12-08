@@ -21,17 +21,14 @@ Gravestone::~Gravestone()
 }
 string Gravestone::printSpaceTop()
 {
-    cout << "   ";
     return "   ";
 }
 string Gravestone::printSpaceMiddle()
 {
-    cout << " " << printSymbol << " ";
     return (" " + printSymbol + " ");
 }
 string Gravestone::printSpaceBottom()
 {
-    cout << "   ";
     return "   ";
 }
 

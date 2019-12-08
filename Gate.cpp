@@ -20,17 +20,14 @@ Gate::~Gate()
 
 string Gate::printSpaceTop()
 {
-    cout << "   ";
     return "   ";
 }
 string Gate::printSpaceMiddle()
 {
-    cout << "=" << printSymbol << "=";
     return ("=" + printSymbol + "=");
 }
 string Gate::printSpaceBottom()
 {
-    cout << "   ";
     return "   ";
 }
 

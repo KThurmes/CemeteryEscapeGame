@@ -19,7 +19,6 @@ Empty::Empty()
 
 string Empty::printSpaceTop()
 {
-    cout << "   ";
     return "   ";
 }
 
@@ -29,13 +28,11 @@ string Empty::printSpaceMiddle()
     {
         printSymbol = "#";
     }
-    cout << " " << printSymbol << " ";
     return " " + printSymbol + " ";
 }
 
 string Empty::printSpaceBottom()
 {
-    cout << "   ";
     return "   ";
 }
 

@@ -22,17 +22,14 @@ Fence::~Fence()
 
 string Fence::printSpaceTop()
 {
-    cout << "   ";
     return "   ";
 }
 string Fence::printSpaceMiddle()
 {
-    cout << "-" << printSymbol << "-";
     return ("-" + printSymbol + "-");
 }
 string Fence::printSpaceBottom()
 {
-    cout << "   ";
     return "   ";
 }
 

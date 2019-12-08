@@ -24,6 +24,7 @@ public:
     int getHealth();
     bool getPastFence();
     void setPastFence(bool);
+    void discoverSpaces();
 };
 
 #endif

@@ -8,6 +8,7 @@ using std::cout;
 using std::distance;
 using std::endl;
 using std::find;
+
 using std::vector;
 
 Inventory::Inventory()
@@ -35,6 +36,7 @@ int Inventory::addItem(Item *toAdd)
 
 void Inventory::showItems()
 {
+
     for (auto it = inventoryList.begin(); it != inventoryList.end(); ++it)
     {
         Item *theItem = *it;

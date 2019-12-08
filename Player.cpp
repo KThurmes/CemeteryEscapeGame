@@ -90,3 +90,24 @@ int Player::getHealth()
 {
     return health;
 }
+
+void Player::discoverSpaces()
+{
+    location->discover();
+    if (location->getTop() != 0)
+    {
+        location->getTop()->discover();
+    }
+    if (location->getRight() != 0)
+    {
+        location->getRight()->discover();
+    }
+    if (location->getBottom() != 0)
+    {
+        location->getBottom()->discover();
+    }
+    if (location->getLeft() != 0)
+    {
+        location->getLeft()->discover();
+    }
+}

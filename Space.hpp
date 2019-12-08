@@ -19,6 +19,7 @@ protected:
     Item *item;
     string spaceType;
     bool spawnGhostEvent;
+    bool discovered;
 
 public:
     Space();

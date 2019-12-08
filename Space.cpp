@@ -14,6 +14,7 @@ Space::Space()
     hasCharacter = false;
     item = 0;
     spawnGhostEvent = false;
+    discovered = false;
 }
 
 void Space::setIDNum(int id)
@@ -127,4 +128,9 @@ bool Space::getSpawnGhost()
 void Space::setSpawnGhost(bool spawnGhost)
 {
     spawnGhostEvent = spawnGhost;
+}
+
+void Space::discover()
+{
+    discovered = true;
 }
