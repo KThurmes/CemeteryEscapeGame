@@ -34,7 +34,6 @@ public:
     void setBottom(Space *);
     void setLeft(Space *);
     void setHasCharacter(bool);
-    void setPrintSymbol(string);
     Space *getTop();
     Space *getRight();
     Space *getBottom();

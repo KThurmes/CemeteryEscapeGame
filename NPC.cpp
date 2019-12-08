@@ -83,7 +83,6 @@ Space *NPC::step()
 void NPC::disappear()
 {
     location->setHasCharacter(false);
-    location->setPrintSymbol(" ");
     location = 0;
 }
 

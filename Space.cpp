@@ -51,10 +51,6 @@ void Space::setHasCharacter(bool doesIt)
 {
     hasCharacter = doesIt;
 }
-void Space::setPrintSymbol(string symb)
-{
-    printSymbol = symb;
-}
 
 Space *Space::getTop()
 {

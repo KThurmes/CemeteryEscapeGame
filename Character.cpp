@@ -15,11 +15,9 @@ void Character::setLocation(Space *theSpace)
     if (location != 0)
     {
         location->setHasCharacter(false);
-        location->setPrintSymbol(" ");
     }
     location = theSpace;
     location->setHasCharacter(true);
-    location->setPrintSymbol(symbol);
 }
 
 Space *Character::getLocation()

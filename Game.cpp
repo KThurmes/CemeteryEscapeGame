@@ -65,7 +65,6 @@ void Game::moveCharacter(Character *character, Space *destination)
     }
 
     //Move character to somewhere else
-    destination->setPrintSymbol(character->getSymbol());
     destination->setHasCharacter(true);
     character->setLocation(destination);
 }
@@ -256,11 +255,28 @@ void Game::printPlayerHealth()
 string Game::buildPrintString()
 {
     string boardVis = gb.printGameBoard();
+
     int playerRow = player.getLocation()->getRow();
     int playerCol = player.getLocation()->getCol();
     boardVis[stringPosition(playerRow, playerCol, 5)] = player.getSymbol()[0];
 
-    boardVis[stringPosition(3, 4, 9)] = '&';
+    if (!sister.getFound())
+    {
+        int sisterRow = sister.getLocation()->getRow();
+        int sisterCol = sister.getLocation()->getCol();
+        boardVis[stringPosition(sisterRow, sisterCol, 5)] = sister.getSymbol()[0];
+    }
+    int charRow;
+    int charCol;
+
+    for (auto it = NPCList.begin(); it != NPCList.end(); ++it)
+    {
+        NPC *theCharacter = *it;
+        charRow = theCharacter->getLocation()->getRow();
+        charCol = theCharacter->getLocation()->getCol();
+        boardVis[stringPosition(charRow, charCol, 5)] = theCharacter->getSymbol()[0];
+    }
+
     return boardVis;
 }
 
@@ -268,11 +284,9 @@ int Game::stringPosition(int row, int col, int position)
 {
     int stringPosition = 0;
     int boardCol = gb.getNCols();
-    int boardRow = gb.getNRows();
 
     int oneRow = (5 * boardCol) + 1;
     int oneRowSpaces = oneRow * 5;
-    int spaceCenter = (oneRowSpaces * row) + (oneRow * 2) + (5 * col) + 2;
 
     switch (position)
     {

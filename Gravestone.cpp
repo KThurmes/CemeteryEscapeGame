@@ -25,6 +25,15 @@ string Gravestone::printSpaceTop()
 }
 string Gravestone::printSpaceMiddle()
 {
+    if (!passable == true)
+    {
+        return " " + printSymbol + " ";
+    }
+    else
+    {
+        return "   ";
+    }
+
     return (" " + printSymbol + " ");
 }
 string Gravestone::printSpaceBottom()
