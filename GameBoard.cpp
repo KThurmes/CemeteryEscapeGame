@@ -29,7 +29,6 @@ GameBoard::GameBoard()
             {
                 if (j == 7)
                 {
-
                     spaces[i][j] = new Gate();
                 }
                 else
@@ -41,6 +40,7 @@ GameBoard::GameBoard()
             else if (i == 1 && j == 2)
             {
                 spaces[i][j] = new Gravestone();
+                ;
             }
             else if (i == 5 && j == 3)
             {
@@ -77,6 +77,7 @@ GameBoard::GameBoard()
     {
         for (int j = 0; j < nCols; ++j)
         {
+            spaces[i][j]->setRowCol(i, j);
             //top row
             if (i - 1 < 0)
             {
@@ -120,7 +121,7 @@ GameBoard::GameBoard()
 
 string GameBoard::printGameBoard()
 {
-    string boardVis = "\n";
+    string boardVis = "";
     for (int i = 0; i < nRows; ++i)
     {
         for (int j = 0; j < nCols; ++j)
@@ -193,7 +194,7 @@ void GameBoard::printKey()
     cout << "===";
     cout << "          ";
     cout << "Gate" << endl;
-    cout << "±";
+    cout << "t";
     cout << "            ";
     cout << "Gravestone";
     cout << "#";

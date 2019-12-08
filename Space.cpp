@@ -134,3 +134,18 @@ void Space::discover()
 {
     discovered = true;
 }
+
+void Space::setRowCol(int row, int col)
+{
+    this->row = row;
+    this->col = col;
+}
+
+int Space::getRow()
+{
+    return row;
+}
+int Space::getCol()
+{
+    return col;
+}

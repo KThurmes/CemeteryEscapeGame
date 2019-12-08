@@ -256,5 +256,45 @@ void Game::printPlayerHealth()
 string Game::buildPrintString()
 {
     string boardVis = gb.printGameBoard();
+    int playerRow = player.getLocation()->getRow();
+    int playerCol = player.getLocation()->getCol();
+    boardVis[stringPosition(playerRow, playerCol, 5)] = player.getSymbol()[0];
+
+    boardVis[stringPosition(3, 4, 9)] = '&';
     return boardVis;
+}
+
+int Game::stringPosition(int row, int col, int position)
+{
+    int stringPosition = 0;
+    int boardCol = gb.getNCols();
+    int boardRow = gb.getNRows();
+
+    int oneRow = (5 * boardCol) + 1;
+    int oneRowSpaces = oneRow * 5;
+    int spaceCenter = (oneRowSpaces * row) + (oneRow * 2) + (5 * col) + 2;
+
+    switch (position)
+    {
+    case 9:
+        stringPosition += 1;
+    case 8:
+        stringPosition += 1;
+    case 7:
+        stringPosition += oneRow - 2;
+    case 6:
+        stringPosition += 1;
+    case 5:
+        stringPosition += 1;
+    case 4:
+        stringPosition += oneRow - 2;
+    case 3:
+        stringPosition += 1;
+    case 2:
+        stringPosition += 1;
+    case 1:
+        stringPosition += (oneRowSpaces * row) + oneRow + (5 * col) + 1;
+    }
+    cout << stringPosition << endl;
+    return stringPosition;
 }

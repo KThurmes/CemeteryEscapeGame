@@ -20,6 +20,8 @@ protected:
     string spaceType;
     bool spawnGhostEvent;
     bool discovered;
+    int row;
+    int col;
 
 public:
     Space();
@@ -49,6 +51,10 @@ public:
     bool getSpawnGhost();
     void setSpawnGhost(bool);
     virtual void changeToDefaultSymbol() = 0;
+    void discover();
+    void setRowCol(int, int);
+    int getRow();
+    int getCol();
 };
 
 #endif

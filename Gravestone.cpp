@@ -14,7 +14,7 @@ Gravestone::Gravestone()
 {
     hasKey = false;
     passable = false;
-    printSymbol = "±";
+    printSymbol = "t";
 }
 Gravestone::~Gravestone()
 {
@@ -86,7 +86,7 @@ void Gravestone::setHasKey(bool key)
 
 void Gravestone::changeToDefaultSymbol()
 {
-    printSymbol = "±";
+    printSymbol = "t";
 }
 
 void Gravestone::setEngraving(string message)

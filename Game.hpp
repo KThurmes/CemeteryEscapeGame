@@ -41,5 +41,6 @@ public:
     void moveCharacter(Character *, int, int);
     bool getGameOver() { return gameOver; };
     string buildPrintString();
+    int stringPosition(int, int, int);
 };
 #endif
