@@ -3,6 +3,8 @@
 #include <iostream>
 #include "getNumberBetween.hpp"
 #include "Inventory.hpp"
+#include "enterToContinue.hpp"
+using std::cin;
 using std::cout;
 using std::endl;
 
@@ -30,18 +32,21 @@ void Gravestone::printSpaceBottom()
 
 void Gravestone::interact(Inventory *playersInventory)
 {
-    cout << "This gravestone looks a little wobbly. Knock it over?" << endl;
+    string tempThrowAway;
+    cout << "This gravestone looks a little wobbly. Jostle it a bit?" << endl;
     cout << "1. Yeah!" << endl;
     cout << "2. No, thanks." << endl;
     int selection = getNumberBetween(1, 2);
     if (selection == 1)
     {
-        cout << "Dude. Not cool. Now you've angered the spirit of this poor dead person." << endl;
-        cout << "Serves you right." << endl;
+        cout << "Dude. Not cool. Now you've angered the spirit of this poor dead person and created a new ghost." << endl;
+        cout << "Serves you right." << endl
+             << endl;
+        ;
+
         //Set the flag to spawn a ghost.
         spawnGhostEvent = true;
         passable = true;
-        //###TODO: update printout
 
         if (hasKey)
         {
@@ -55,8 +60,7 @@ void Gravestone::interact(Inventory *playersInventory)
         {
             cout << "Hmmm... This gravestone looks a little dirty. Clean it off?" << endl;
             cout << "1. Yeah, I'm sure this person's family will appreciate it." << endl;
-            cout << "2. Naw, let's get back to looking for my sister." << endl;
-            //###TODO: include narrative about looking for sister
+            cout << "2. Naw, let's get back to the task at hand." << endl;
             cleaned = true;
             selection = getNumberBetween(1, 2);
             if (selection == 1)
@@ -65,8 +69,13 @@ void Gravestone::interact(Inventory *playersInventory)
                 //###TODO Format message
                 //###TODO Make messages for gravestones
             }
+            if (selection == 2)
+            {
+                cout << "Right. Better keep moving." << endl;
+            }
         }
     }
+    enterToContinue();
 }
 
 void Gravestone::setHasKey(bool key)
@@ -77,4 +86,9 @@ void Gravestone::setHasKey(bool key)
 void Gravestone::changeToDefaultSymbol()
 {
     printSymbol = "±";
+}
+
+void Gravestone::setEngraving(string message)
+{
+    engraving = message;
 }

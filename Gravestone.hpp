@@ -8,6 +8,7 @@ private:
     bool knockedOver;
     bool hasKey;
     bool cleaned;
+    string engraving;
 
 public:
     Gravestone();
@@ -18,5 +19,6 @@ public:
     void interact(Inventory *);
     void setHasKey(bool);
     void changeToDefaultSymbol();
+    void setEngraving(string);
 };
 #endif

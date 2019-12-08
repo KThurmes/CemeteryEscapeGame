@@ -12,7 +12,7 @@ using std::vector;
 Inventory::Inventory()
 {
     nItems = 0;
-    maxItems = 10;
+    maxItems = 5;
 }
 
 int Inventory::addItem(Item *toAdd)
