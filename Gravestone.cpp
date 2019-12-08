@@ -66,7 +66,6 @@ void Gravestone::interact(Inventory *playersInventory)
             if (selection == 1)
             {
                 cout << "Here's what the gravestone says: " << endl;
-                //###TODO Format message
                 //###TODO Make messages for gravestones
             }
             if (selection == 2)

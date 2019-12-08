@@ -3,6 +3,7 @@
 #include "Character.hpp"
 #include <iostream>
 #include "getRandomInt.hpp"
+#include "enterToContinue.hpp"
 #include <cstdlib>
 #include <ctime>
 using std::cout;
@@ -27,7 +28,6 @@ Space *Ghost::move()
     //turn
     if (moveOption == 0)
     {
-        cout << "Ghost chose to turn" << endl;
         //choose to turn right or left
         moveOption = getRandomInt(0, 1);
         turn(moveOption);
@@ -47,5 +47,6 @@ int Ghost::interact()
     cout << endl;
     cout << "-1 health" << endl
          << endl;
+    enterToContinue();
     return -1;
 }

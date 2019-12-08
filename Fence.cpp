@@ -3,6 +3,7 @@
 #include <iostream>
 #include "getNumberBetween.hpp"
 #include "Inventory.hpp"
+#include "enterToContinue.hpp"
 using std::cout;
 using std::endl;
 
@@ -58,6 +59,7 @@ void Fence::interact(Inventory *playersInventory)
             }
         }
     }
+    enterToContinue();
 }
 
 void Fence::changeToDefaultSymbol()

@@ -2,6 +2,7 @@
 #include <iostream>
 #include "getNumberBetween.hpp"
 #include "Game.hpp"
+#include "enterToContinue.hpp"
 using std::cout;
 using std::endl;
 
@@ -56,6 +57,7 @@ void Menu::backstory()
     cout << "~~~~~~~~~~~~~~~~~~~~~~~~"
          << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl
          << endl;
+    enterToContinue();
 }
 
 void Menu::gameOptions()

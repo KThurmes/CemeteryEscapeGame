@@ -1,5 +1,6 @@
 #include "Inventory.hpp"
 #include "Item.hpp"
+#include "enterToContinue.hpp"
 #include <vector>
 #include <iostream>
 #include <algorithm>
@@ -26,6 +27,7 @@ int Inventory::addItem(Item *toAdd)
     else
     {
         cout << "You don't have enough room in your backpack for that item! Please use something up to free up space in your backpack!" << endl;
+        enterToContinue();
         successfullyAdded = 0;
     }
     return successfullyAdded;

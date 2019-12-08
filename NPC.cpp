@@ -17,13 +17,11 @@ void NPC::turn(int directionToTurn)
     //0 is clockwise rotation, 1 is counter-clockwise
     if (directionToTurn == 0)
     {
-        cout << symbol << " turning clockwise" << endl;
         direction = (direction + 1) % 4;
     }
     //counter-clockwise
     else
     {
-        cout << symbol << " Turning counter-clockwise" << endl;
         direction = (direction + 3) % 4;
     }
 }

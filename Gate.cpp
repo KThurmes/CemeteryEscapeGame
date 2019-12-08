@@ -2,6 +2,7 @@
 #include "Space.hpp"
 #include <iostream>
 #include "getNumberBetween.hpp"
+#include "enterToContinue.hpp"
 using std::cout;
 using std::endl;
 
@@ -57,6 +58,7 @@ void Gate::interact(Inventory *playersInventory)
     {
         cout << "It looks locked." << endl;
     }
+    enterToContinue();
 }
 
 void Gate::changeToDefaultSymbol()
