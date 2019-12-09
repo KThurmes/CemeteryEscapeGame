@@ -15,6 +15,7 @@ public:
     void backstory();
     void gameOptions();
     void gameInfoMenu();
+    void gameLogistics();
 };
 
 #endif

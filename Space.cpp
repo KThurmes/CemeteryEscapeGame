@@ -14,11 +14,10 @@ Space::Space()
     hasCharacter = false;
     item = 0;
     spawnGhostEvent = false;
-    discovered = false;
     glare = false;
 }
 
-void Space::setIDNum(int id)
+/* void Space::setIDNum(int id)
 {
     idNum = id;
 }
@@ -26,7 +25,7 @@ void Space::setIDNum(int id)
 int Space::getIDNum()
 {
     return idNum;
-}
+} */
 
 void Space::setTop(Space *newTop)
 {
@@ -125,11 +124,6 @@ bool Space::getSpawnGhost()
 void Space::setSpawnGhost(bool spawnGhost)
 {
     spawnGhostEvent = spawnGhost;
-}
-
-void Space::discover()
-{
-    discovered = true;
 }
 
 void Space::setRowCol(int row, int col)

@@ -16,7 +16,7 @@ GameBoard::GameBoard()
     nCols = 14;
     nRows = 7;
     spaces = new Space **[nRows];
-    int k = 0;
+    //int k = 0;
 
     //initialize spaces
     for (int i = 0; i < nRows; ++i)
@@ -66,9 +66,9 @@ GameBoard::GameBoard()
             else
             {
                 spaces[i][j] = new Empty();
-                spaces[i][j]->setIDNum(k);
+                //spaces[i][j]->setIDNum(k);
             }
-            ++k;
+            //++k;
         }
     }
 

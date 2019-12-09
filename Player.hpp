@@ -14,17 +14,13 @@ public:
     Player();
     ~Player();
     Space *move();
-    //void takeDamage(int);
     Inventory *getInventory();
-    void pickUpItem(Item *);
-    bool hasKey();
     bool hasSheet();
+    bool hasKey();
+    void pickUpItem(Item *);
     int interact();
     void takeDamage(int);
     int getHealth();
-    bool getPastFence();
-    void setPastFence(bool);
-    void discoverSpaces();
 };
 
 #endif

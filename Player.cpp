@@ -8,7 +8,7 @@ Player::Player()
 {
     location = 0;
     symbol = 'x';
-    health = 5;
+    health = 25;
 }
 
 Player::~Player()
@@ -26,7 +26,6 @@ Space *Player::move()
     cout << "5. Don't move" << endl;
     int selection = getNumberBetween(1, 5);
 
-    //Space *destination;
     if (selection == 1)
     {
         //check up
@@ -89,25 +88,4 @@ void Player::takeDamage(int damage)
 int Player::getHealth()
 {
     return health;
-}
-
-void Player::discoverSpaces()
-{
-    location->discover();
-    if (location->getTop() != 0)
-    {
-        location->getTop()->discover();
-    }
-    if (location->getRight() != 0)
-    {
-        location->getRight()->discover();
-    }
-    if (location->getBottom() != 0)
-    {
-        location->getBottom()->discover();
-    }
-    if (location->getLeft() != 0)
-    {
-        location->getLeft()->discover();
-    }
 }

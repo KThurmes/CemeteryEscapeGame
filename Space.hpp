@@ -15,11 +15,10 @@ protected:
     bool hasCharacter;
     bool passable;
     string printSymbol;
-    int idNum;
+    //int idNum;
     Item *item;
     string spaceType;
     bool spawnGhostEvent;
-    bool discovered;
     int row;
     int col;
     bool glare;
@@ -41,8 +40,8 @@ public:
     Space *getLeft();
     bool getPassable();
     bool getHasCharacter();
-    void setIDNum(int);
-    int getIDNum();
+    //void setIDNum(int);
+    //int getIDNum();
     virtual void interact(Inventory *) = 0;
     void dropItem(Item *);
     Item *pickUpItem();
@@ -51,7 +50,6 @@ public:
     bool getSpawnGhost();
     void setSpawnGhost(bool);
     virtual void changeToDefaultSymbol() = 0;
-    void discover();
     void setRowCol(int, int);
     int getRow();
     int getCol();

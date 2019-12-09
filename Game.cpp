@@ -123,7 +123,6 @@ void Game::turn()
             else
             {
                 moveCharacter(&player, destination);
-                player.discoverSpaces();
             }
         }
     }
