@@ -20,6 +20,7 @@ public:
     void printKey();
     int getNCols();
     int getNRows();
+    void resetGlares();
 };
 
 #endif

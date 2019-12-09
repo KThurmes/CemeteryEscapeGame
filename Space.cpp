@@ -15,6 +15,7 @@ Space::Space()
     item = 0;
     spawnGhostEvent = false;
     discovered = false;
+    glare = false;
 }
 
 void Space::setIDNum(int id)
@@ -144,4 +145,14 @@ int Space::getRow()
 int Space::getCol()
 {
     return col;
+}
+
+void Space::setGlare(bool gl)
+{
+    glare = gl;
+}
+
+bool Space::getGlare()
+{
+    return glare;
 }

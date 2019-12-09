@@ -8,6 +8,7 @@ class NPC : public Character
 protected:
     int direction;
     Item *carriedItem;
+    bool glareRay;
 
 public:
     NPC();
@@ -19,6 +20,8 @@ public:
     virtual int interact() = 0;
     void disappear();
     void dropItem();
+    bool getGlareRay();
+    int getDirection();
 };
 
 #endif

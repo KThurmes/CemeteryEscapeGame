@@ -18,8 +18,8 @@ using std::string;
 Game::Game()
 {
     //Put the player in their starting place.
-    Player *pPlayer = &player;
-    moveCharacter(pPlayer, 1, 7);
+    //Player *pPlayer = &player;
+    moveCharacter(&player, 1, 7);
 
     //Set up the sister
     moveCharacter(&sister, 3, 3);
@@ -78,50 +78,55 @@ void Game::printGameBoard()
 void Game::turn()
 {
 
-    //Player makes their move
-    Space *destination = player.move();
+    gameOver = checkGameOver();
+    Space *destination;
 
-    //If there isn't a square in the direction the player wants to go...
-    if (destination == 0)
+    if (gameOver == false)
     {
-        cout << "Cannot go in that direction!" << endl;
-        turn();
-    }
+        //Player makes their move
+        destination = player.move();
 
-    else
-    {
-        if (destination == player.getLocation())
+        //If there isn't a square in the direction the player wants to go...
+        if (destination == 0)
         {
-            //Stay where you are
+            cout << "Cannot go in that direction!" << endl;
+            turn();
         }
 
-        //Player interacts with any characters they bumped into
-        else if (destination->getHasCharacter())
-        {
-            interaction(destination);
-        }
-
-        //If the space isn't passable, interact with it
-        else if (!destination->getPassable())
-        {
-            //Interact with the space
-            destination->interact(player.getInventory());
-
-            //See if game needs to spawn a ghost at destination
-            if (destination->getSpawnGhost())
-            {
-                spawnGhost(destination);
-            }
-        }
-
-        //Else, there's no one there and it's passable. Player moves.
         else
         {
-            moveCharacter(&player, destination);
-            player.discoverSpaces();
+            if (destination == player.getLocation())
+            {
+                //Stay where you are
+            }
+
+            //Player interacts with any characters they bumped into
+            else if (destination->getHasCharacter())
+            {
+                interaction(destination);
+            }
+
+            //If the space isn't passable, interact with it
+            else if (!destination->getPassable())
+            {
+                //Interact with the space
+                destination->interact(player.getInventory());
+
+                //See if game needs to spawn a ghost at destination
+                if (destination->getSpawnGhost())
+                {
+                    spawnGhost(destination);
+                }
+            }
+
+            //Else, there's no one there and it's passable. Player moves.
+            else
+            {
+                moveCharacter(&player, destination);
+                player.discoverSpaces();
+            }
         }
     }
-
     gameOver = checkGameOver();
 
     if (gameOver == false)
@@ -147,15 +152,117 @@ void Game::turn()
             moveCharacter(&sister, destination);
         }
 
+        //All the other NPCs make their moves
         for (auto it = NPCList.begin(); it != NPCList.end(); ++it)
         {
             NPC *theCharacter = *it;
             destination = theCharacter->move();
             moveCharacter(theCharacter, destination);
         }
+
+        setGlares();
     }
+
+    //Check that the player isn't in a glare space
+    checkGlareHit();
+
     //print screen
     printGameBoard();
+}
+
+void Game::checkGlareHit()
+{
+    if (player.getLocation()->getGlare())
+    {
+        cout << "Yikes! The icy glare of the undead hits you like a snowball. Try to remain out of sight of the ghosts!" << endl;
+        cout << "health -1" << endl;
+        player.takeDamage(-1);
+        enterToContinue();
+    }
+}
+
+void Game::setGlares()
+{
+    //Reset all the glares
+    gb.resetGlares();
+
+    //Redraw all the glares
+    int direction;
+    for (auto it = NPCList.begin(); it != NPCList.end(); ++it)
+    {
+        NPC *theCharacter = *it;
+        //If the character has a glare, then set the spaces in the direction it is facing to have glare be "true"
+        //Until the glare hits an impassible space
+        if (theCharacter->getGlareRay())
+        {
+            Space *nextSpace;
+            direction = theCharacter->getDirection();
+            if (direction == 0)
+            {
+                nextSpace = theCharacter->getLocation()->getTop();
+                while (nextSpace != 0)
+                {
+                    nextSpace->setGlare(true);
+                    if (nextSpace->getPassable())
+                    {
+                        nextSpace = nextSpace->getTop();
+                    }
+                    else
+                    {
+                        nextSpace = 0;
+                    }
+                }
+            }
+            else if (direction == 1)
+            {
+                nextSpace = theCharacter->getLocation()->getRight();
+                while (nextSpace != 0)
+                {
+                    nextSpace->setGlare(true);
+                    if (nextSpace->getPassable())
+                    {
+                        nextSpace = nextSpace->getRight();
+                    }
+                    else
+                    {
+                        nextSpace = 0;
+                    }
+                }
+            }
+            else if (direction == 2)
+            {
+                nextSpace = theCharacter->getLocation()->getBottom();
+                while (nextSpace != 0)
+                {
+                    nextSpace->setGlare(true);
+                    if (nextSpace->getPassable())
+                    {
+                        nextSpace = nextSpace->getBottom();
+                    }
+                    else
+                    {
+                        nextSpace = 0;
+                    }
+                }
+            }
+            else if (direction == 3)
+            {
+                nextSpace = theCharacter->getLocation()->getLeft();
+                while (nextSpace != 0)
+                {
+                    nextSpace->setGlare(true);
+                    if (nextSpace->getPassable())
+                    {
+                        nextSpace = nextSpace->getLeft();
+                    }
+                    else
+                    {
+                        nextSpace = 0;
+                    }
+                }
+            }
+        }
+    }
 }
 
 void Game::interaction(Space *location)
@@ -230,9 +337,10 @@ void Game::deleteGame()
 
 bool Game::checkGameOver()
 {
-    if (player.getHealth() == 0)
+    if (player.getHealth() < 1)
     {
         cout << "You have run out of health! You will now become a permanent resident of this cemetary." << endl;
+        enterToContinue();
         return 1;
     }
 
@@ -275,8 +383,28 @@ string Game::buildPrintString()
         charRow = theCharacter->getLocation()->getRow();
         charCol = theCharacter->getLocation()->getCol();
         boardVis[stringPosition(charRow, charCol, 5)] = theCharacter->getSymbol()[0];
+        if (theCharacter->getGlareRay())
+        {
+            //If the NPC has a direction, then print out an indicator arrow for it.
+            int direction = theCharacter->getDirection();
+            if (direction == 0)
+            {
+                boardVis[stringPosition(charRow, charCol, 2)] = '^';
+            }
+            else if (direction == 1)
+            {
+                boardVis[stringPosition(charRow, charCol, 6)] = '>';
+            }
+            else if (direction == 2)
+            {
+                boardVis[stringPosition(charRow, charCol, 8)] = 'v';
+            }
+            else
+            {
+                boardVis[stringPosition(charRow, charCol, 4)] = '<';
+            }
+        }
     }
-
     return boardVis;
 }
 
@@ -309,6 +437,5 @@ int Game::stringPosition(int row, int col, int position)
     case 1:
         stringPosition += (oneRowSpaces * row) + oneRow + (5 * col) + 1;
     }
-    cout << stringPosition << endl;
     return stringPosition;
 }

@@ -42,5 +42,7 @@ public:
     bool getGameOver() { return gameOver; };
     string buildPrintString();
     int stringPosition(int, int, int);
+    void checkGlareHit();
+    void setGlares();
 };
 #endif

@@ -33,22 +33,18 @@ Space *NPC::step()
 
     if (direction == 0)
     {
-        //cout << symbol << " Moving up" << endl;
         destination = location->getTop();
     }
     else if (direction == 1)
     {
-        //cout << symbol << " Moving right" << endl;
         destination = location->getRight();
     }
     else if (direction == 2)
     {
-        //cout << symbol << " Moving down" << endl;
         destination = location->getBottom();
     }
     else
     {
-        //cout << symbol << " Moving left" << endl;
         destination = location->getLeft();
     }
 
@@ -96,4 +92,14 @@ void NPC::dropItem()
     Item *theItem = carriedItem;
     carriedItem = 0;
     location->dropItem(theItem);
+}
+
+bool NPC::getGlareRay()
+{
+    return glareRay;
+}
+
+int NPC::getDirection()
+{
+    return direction;
 }

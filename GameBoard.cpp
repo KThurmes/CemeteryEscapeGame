@@ -219,3 +219,14 @@ int GameBoard::getNCols()
 {
     return nCols;
 }
+
+void GameBoard::resetGlares()
+{
+    for (int i = 0; i < nRows; ++i)
+    {
+        for (int j = 0; j < nCols; ++j)
+        {
+            spaces[i][j]->setGlare(false);
+        }
+    }
+}

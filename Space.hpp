@@ -22,6 +22,7 @@ protected:
     bool discovered;
     int row;
     int col;
+    bool glare;
 
 public:
     Space();
@@ -54,6 +55,8 @@ public:
     void setRowCol(int, int);
     int getRow();
     int getCol();
+    void setGlare(bool);
+    bool getGlare();
 };
 
 #endif

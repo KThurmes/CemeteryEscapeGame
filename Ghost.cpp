@@ -13,6 +13,7 @@ Ghost::Ghost()
 {
     location = 0;
     symbol = "G";
+    glareRay = true;
 }
 
 Ghost::~Ghost()
