@@ -103,3 +103,9 @@ int NPC::getDirection()
 {
     return direction;
 }
+
+bool NPC::dropSnack()
+{
+    int random = getRandomInt(1, 3);
+    return (random < 2);
+}

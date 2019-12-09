@@ -51,13 +51,16 @@ void Menu::gameLogistics()
          << endl;
     cout << "You estimate that you can take about 25 more steps before you succumb"
          << endl;
-    cout << " to hunger. " << endl
+    cout << "to hunger. " << endl
          << endl;
     cout << "But watch out! The ghosts and their icy glares can sap just as much " << endl;
     cout << "energy from you as your growling stomach. If a ghost is looking in " << endl;
     cout << "your direction (you can tell because the ghosts have an arrow pointing" << endl;
     cout << "in the direction they're turned), quick get out of their way or duck " << endl;
-    cout << "behind a tombstone!" << endl;
+    cout << "behind a tombstone!" << endl
+         << endl;
+    cout << "Locate your sister quickly and find a way out of the cemetery before" << endl;
+    cout << "dinner gets cold!" << endl;
     cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl
          << endl;
 }

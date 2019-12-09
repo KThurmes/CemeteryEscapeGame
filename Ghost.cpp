@@ -43,11 +43,12 @@ Space *Ghost::move()
 
 int Ghost::interact()
 {
-    cout << "Was that a cool breeze or the clammy embrace of the undead?" << endl;
-    cout << "Either way, you are left feeling slightly worse now than before the chill came over you." << endl;
-    cout << endl;
-    cout << "-1 health" << endl
+    cout << endl
+         << "Was that a cool breeze or the clammy embrace of the undead?" << endl
          << endl;
+    cout << "Either way, you are left feeling slightly worse now than before the \nchill came over you." << endl;
+    cout << endl;
+
     enterToContinue();
     return -1;
 }

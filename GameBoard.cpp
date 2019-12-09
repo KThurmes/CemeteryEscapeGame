@@ -16,7 +16,6 @@ GameBoard::GameBoard()
     nCols = 14;
     nRows = 7;
     spaces = new Space **[nRows];
-    //int k = 0;
 
     //initialize spaces
     for (int i = 0; i < nRows; ++i)
@@ -39,26 +38,33 @@ GameBoard::GameBoard()
             //Place gravestones
             else if (i == 1 && j == 2)
             {
-                spaces[i][j] = new Gravestone();
-                ;
+                Gravestone *grave = new Gravestone();
+                grave->setEngraving("\"Shannon Clark\n1897 - 1950\nOne of these things is not like the others.\"");
+                spaces[i][j] = grave;
             }
             else if (i == 5 && j == 3)
             {
-                spaces[i][j] = new Gravestone();
+                Gravestone *grave = new Gravestone();
+                grave->setEngraving("\"Oscar Baxter\n1937 - 1999\nAll dressed up with nowhere to go.\"");
+                spaces[i][j] = grave;
             }
             else if (i == 5 && j == 8)
             {
-                spaces[i][j] = new Gravestone();
+                Gravestone *grave = new Gravestone();
+                grave->setEngraving("\"Toby Blankenship\n1921 - 1943\n He called Oliver Murphy a liar.\"");
+                spaces[i][j] = grave;
             }
             else if (i == 1 && j == 9)
             {
-                spaces[i][j] = new Gravestone();
+                Gravestone *grave = new Gravestone();
+                grave->setEngraving("\"Oliver Murphy\n1900 - 1969\nThere's an imposter among us ghosts.\"");
+                spaces[i][j] = grave;
             }
-            //This last one has the key.
+            //This one will have the key
             else if (i == 6 && j == 8)
             {
                 Gravestone *grave = new Gravestone();
-                grave->setHasKey(true);
+                grave->setEngraving("JOE'S HALLOWEEN PRACTICAL PROP SHOP");
                 spaces[i][j] = grave;
             }
 
@@ -66,9 +72,7 @@ GameBoard::GameBoard()
             else
             {
                 spaces[i][j] = new Empty();
-                //spaces[i][j]->setIDNum(k);
             }
-            //++k;
         }
     }
 

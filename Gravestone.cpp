@@ -14,15 +14,19 @@ Gravestone::Gravestone()
 {
     hasKey = false;
     passable = false;
-    printSymbol = "t";
+    printSymbol = "n";
+    cleaned = false;
 }
+
 Gravestone::~Gravestone()
 {
 }
+
 string Gravestone::printSpaceTop()
 {
     return "   ";
 }
+
 string Gravestone::printSpaceMiddle()
 {
     if (!passable == true)
@@ -33,9 +37,8 @@ string Gravestone::printSpaceMiddle()
     {
         return "   ";
     }
-
-    return (" " + printSymbol + " ");
 }
+
 string Gravestone::printSpaceBottom()
 {
     return "   ";
@@ -43,59 +46,70 @@ string Gravestone::printSpaceBottom()
 
 void Gravestone::interact(Inventory *playersInventory)
 {
-    string tempThrowAway;
-    cout << "This gravestone looks a little wobbly. Jostle it a bit?" << endl;
-    cout << "1. Yeah!" << endl;
-    cout << "2. No, thanks." << endl;
-    int selection = getNumberBetween(1, 2);
-    if (selection == 1)
+    int selection;
+    if (!hasKey)
     {
-        cout << "Dude. Not cool. Now you've angered the spirit of this poor dead person and created a new ghost." << endl;
-        cout << "Serves you right." << endl
-             << endl;
-        ;
-
-        //Set the flag to spawn a ghost.
-        spawnGhostEvent = true;
-        passable = true;
-
-        if (hasKey)
+        cout << "This gravestone looks a little wobbly. Jostle it a bit?" << endl;
+        cout << "1. Yeah!" << endl;
+        cout << "2. No, thanks." << endl;
+        selection = getNumberBetween(1, 2);
+        if (selection == 1)
         {
-            cout << "But hey! It looks like there was a key under there!" << endl;
-            cout << "You'll have to wait until the ghost leaves to get it, though." << endl;
+            cout << "Dude. Not cool. Now you've angered the spirit of this poor dead person and created a new ghost." << endl;
+            cout << "Serves you right." << endl
+                 << endl;
+
+            //Set the flag to spawn a ghost.
+            spawnGhostEvent = true;
+            passable = true;
+            cleaned = true;
         }
     }
-    else if (selection == 2)
+
+    if (!cleaned && !passable)
     {
-        if (!cleaned)
+        cout << "Hmmm... This gravestone looks a little dirty. Clean it off?" << endl;
+        cout << "1. Yeah, I'm sure this person's family will appreciate it." << endl;
+        cout << "2. Naw, let's get back to the task at hand." << endl;
+        cleaned = true;
+        selection = getNumberBetween(1, 2);
+        if (selection == 1)
         {
-            cout << "Hmmm... This gravestone looks a little dirty. Clean it off?" << endl;
-            cout << "1. Yeah, I'm sure this person's family will appreciate it." << endl;
-            cout << "2. Naw, let's get back to the task at hand." << endl;
             cleaned = true;
+        }
+        if (selection == 2)
+        {
+            cout << "Right. Better keep moving." << endl;
+            cleaned = false;
+        }
+    }
+    if (cleaned && !passable)
+    {
+        cout << "Here's what the gravestone says: " << endl;
+        cout << this->engraving; //###TODO Make messages for gravestones
+        cout << endl
+             << endl;
+        if (hasKey)
+        {
+            cout << "Hm. That's odd. There's a little secret compartment near the bottom of this novelty gravestone. Open it?" << endl;
+            cout << "1. Yes" << endl;
+            cout << "2. No" << endl;
             selection = getNumberBetween(1, 2);
             if (selection == 1)
             {
-                cout << "Here's what the gravestone says: " << endl;
-                //###TODO Make messages for gravestones
+                cout << "Oh look! There's a spare gate key under here!" << endl
+                     << endl;
+                passable = true;
             }
-            if (selection == 2)
+            else
             {
-                cout << "Right. Better keep moving." << endl;
+                cout << "Okaaaaay. But there's probably something useful hidden in there." << endl
+                     << endl;
             }
         }
     }
+
     enterToContinue();
-}
-
-void Gravestone::setHasKey(bool key)
-{
-    this->hasKey = key;
-}
-
-void Gravestone::changeToDefaultSymbol()
-{
-    printSymbol = "t";
 }
 
 void Gravestone::setEngraving(string message)

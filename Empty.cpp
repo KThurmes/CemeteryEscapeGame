@@ -24,11 +24,14 @@ string Empty::printSpaceTop()
 
 string Empty::printSpaceMiddle()
 {
-    if (!hasCharacter && item != 0)
+    if (item != 0)
     {
-        printSymbol = "#";
+        return " # ";
     }
-    return " " + printSymbol + " ";
+    else
+    {
+        return " " + printSymbol + " ";
+    }
 }
 
 string Empty::printSpaceBottom()
@@ -42,8 +45,4 @@ Empty::~Empty()
 
 void Empty::interact(Inventory *playersInventory)
 {
-}
-void Empty::changeToDefaultSymbol()
-{
-    printSymbol = " ";
 }

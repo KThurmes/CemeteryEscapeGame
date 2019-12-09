@@ -22,6 +22,7 @@ protected:
     int row;
     int col;
     bool glare;
+    bool hasKey;
 
 public:
     Space();
@@ -49,12 +50,13 @@ public:
     string getSpaceType();
     bool getSpawnGhost();
     void setSpawnGhost(bool);
-    virtual void changeToDefaultSymbol() = 0;
     void setRowCol(int, int);
     int getRow();
     int getCol();
     void setGlare(bool);
     bool getGlare();
+    bool getHasKey();
+    void setHasKey(bool);
 };
 
 #endif

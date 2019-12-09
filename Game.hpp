@@ -30,7 +30,6 @@ public:
     void deleteGame();
     void turn();
     void interaction(Space *);
-    void interactionCheck();
     void showBackpackContents();
     void printBoardKey();
     void spawnGhost(int, int);

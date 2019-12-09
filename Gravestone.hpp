@@ -7,8 +7,6 @@ using std::string;
 class Gravestone : public Space
 {
 private:
-    bool knockedOver;
-    bool hasKey;
     bool cleaned;
     string engraving;
 
@@ -19,8 +17,6 @@ public:
     string printSpaceMiddle();
     string printSpaceBottom();
     void interact(Inventory *);
-    void setHasKey(bool);
-    void changeToDefaultSymbol();
     void setEngraving(string);
 };
 #endif

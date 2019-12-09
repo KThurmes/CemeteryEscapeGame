@@ -14,6 +14,5 @@ public:
     string printSpaceMiddle();
     string printSpaceBottom();
     void interact(Inventory *);
-    void changeToDefaultSymbol();
 };
 #endif

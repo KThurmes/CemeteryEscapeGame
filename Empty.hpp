@@ -14,6 +14,6 @@ public:
     string printSpaceBottom();
     ~Empty();
     void interact(Inventory *);
-    void changeToDefaultSymbol();
 };
+
 #endif

@@ -15,17 +15,8 @@ Space::Space()
     item = 0;
     spawnGhostEvent = false;
     glare = false;
+    hasKey = false;
 }
-
-/* void Space::setIDNum(int id)
-{
-    idNum = id;
-}
-
-int Space::getIDNum()
-{
-    return idNum;
-} */
 
 void Space::setTop(Space *newTop)
 {
@@ -149,4 +140,14 @@ void Space::setGlare(bool gl)
 bool Space::getGlare()
 {
     return glare;
+}
+
+void Space::setHasKey(bool key)
+{
+    hasKey = key;
+}
+
+bool Space::getHasKey()
+{
+    return hasKey;
 }

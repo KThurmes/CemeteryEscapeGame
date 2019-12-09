@@ -22,6 +22,7 @@ public:
     void dropItem();
     bool getGlareRay();
     int getDirection();
+    bool dropSnack();
 };
 
 #endif

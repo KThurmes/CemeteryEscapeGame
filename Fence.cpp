@@ -63,8 +63,3 @@ void Fence::interact(Inventory *playersInventory)
     }
     enterToContinue();
 }
-
-void Fence::changeToDefaultSymbol()
-{
-    printSymbol = "-";
-}

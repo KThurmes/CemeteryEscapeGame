@@ -62,8 +62,3 @@ void Gate::interact(Inventory *playersInventory)
     }
     enterToContinue();
 }
-
-void Gate::changeToDefaultSymbol()
-{
-    printSymbol = "=";
-}

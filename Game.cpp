@@ -32,8 +32,8 @@ Game::Game()
     //Drop the key on the gravestone
     Key *key = new Key();
     itemList.push_back(key);
-    //Horrible coding, but the gravestone already has the hasKey flag set.
     Space *gravestoneSpace = gb.getSpaceAt(6, 8);
+    gravestoneSpace->setHasKey(true);
     gravestoneSpace->dropItem(key);
 
     //Create starter Ghosts
@@ -61,7 +61,6 @@ void Game::moveCharacter(Character *character, Space *destination)
     {
         //Pick character up from where they were
         character->getLocation()->setHasCharacter(false);
-        character->getLocation()->changeToDefaultSymbol();
     }
 
     //Move character to somewhere else
@@ -77,7 +76,6 @@ void Game::printGameBoard()
 
 void Game::turn()
 {
-
     gameOver = checkGameOver();
     Space *destination;
 
@@ -125,45 +123,49 @@ void Game::turn()
                 moveCharacter(&player, destination);
             }
         }
-    }
-    gameOver = checkGameOver();
 
-    if (gameOver == false)
-    {
-        //Pick up any items that are lying around
-        Item *pickedUp = player.getLocation()->pickUpItem();
+        gameOver = checkGameOver();
 
-        if (pickedUp != 0)
+        if (gameOver == false)
         {
-            int success = player.getInventory()->addItem(pickedUp);
+            //Pick up any items that are lying around
+            Item *pickedUp = player.getLocation()->pickUpItem();
 
-            //Drop the item if there's no room in the backpack for it.
-            if (success == 0)
+            if (pickedUp != 0)
             {
-                player.getLocation()->dropItem(pickedUp);
+                int success = player.getInventory()->addItem(pickedUp);
+
+                //Drop the item if there's no room in the backpack for it.
+                if (success == 0)
+                {
+                    player.getLocation()->dropItem(pickedUp);
+                }
             }
+
+            //Sister makes her move
+            if (!sister.getFound())
+            {
+                destination = sister.move();
+                moveCharacter(&sister, destination);
+            }
+
+            //All the other NPCs make their moves
+            for (auto it = NPCList.begin(); it != NPCList.end(); ++it)
+            {
+                NPC *theCharacter = *it;
+                destination = theCharacter->move();
+                moveCharacter(theCharacter, destination);
+            }
+
+            setGlares();
         }
 
-        //Sister makes her move
-        if (!sister.getFound())
-        {
-            destination = sister.move();
-            moveCharacter(&sister, destination);
-        }
+        //Check that the player isn't in a glare space. Update health if they are.
+        checkGlareHit();
 
-        //All the other NPCs make their moves
-        for (auto it = NPCList.begin(); it != NPCList.end(); ++it)
-        {
-            NPC *theCharacter = *it;
-            destination = theCharacter->move();
-            moveCharacter(theCharacter, destination);
-        }
-
-        setGlares();
+        //Player gets hungrier
+        player.takeDamage(-1);
     }
-
-    //Check that the player isn't in a glare space
-    checkGlareHit();
 
     //print screen
     printGameBoard();
@@ -173,8 +175,11 @@ void Game::checkGlareHit()
 {
     if (player.getLocation()->getGlare())
     {
-        cout << "Yikes! The icy glare of the undead hits you like a snowball. Try to remain out of sight of the ghosts!" << endl;
-        cout << "health -1" << endl;
+        cout << endl
+             << "Yikes! The icy glare of the undead hits you like a snowball. Try to \nremain out of sight of the ghosts!" << endl
+             << endl;
+        ;
+
         player.takeDamage(-1);
         enterToContinue();
     }
