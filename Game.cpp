@@ -11,6 +11,8 @@
 #include "NPC.hpp"
 #include <string>
 #include "enterToContinue.hpp"
+#include "Snack.hpp"
+#include "getNumberBetween.hpp"
 using std::cout;
 using std::endl;
 using std::string;
@@ -154,6 +156,7 @@ void Game::turn()
             {
                 NPC *theCharacter = *it;
                 destination = theCharacter->move();
+                snackDrop(theCharacter);
                 moveCharacter(theCharacter, destination);
             }
 
@@ -301,6 +304,28 @@ void Game::showBackpackContents()
     Inventory *theBackpack = player.getInventory();
     cout << "Here is a list of items you have in your backpack:\n";
     theBackpack->showItems();
+    int selection;
+    cout << "Would you like to use an item?" << endl;
+    cout << "1. Yes" << endl;
+    cout << "2. No" << endl;
+    selection = getNumberBetween(1, 2);
+
+    if (selection == 1)
+    {
+        cout << "Which item would you like to use?" << endl;
+        selection = getNumberBetween(1, theBackpack->getNItems());
+        Item *theItem = theBackpack->useItem(selection - 1);
+        if (theItem->getItemName() == "snack")
+        {
+            player.takeDamage(1);
+            cout << "That was a yummy snack! I feel a little better!" << endl;
+            delete theItem;
+        }
+        else
+        {
+            cout << "You can't use that here!" << endl;
+        }
+    }
 }
 
 void Game::printBoardKey()
@@ -442,4 +467,15 @@ int Game::stringPosition(int row, int col, int position)
         stringPosition += (oneRowSpaces * row) + oneRow + (5 * col) + 1;
     }
     return stringPosition;
+}
+
+void Game::snackDrop(NPC *theSnacker)
+{
+    Space *dropSpace = theSnacker->getLocation();
+    if (!dropSpace->hasItem() && theSnacker->dropSnack())
+    {
+        Snack *nibble = new Snack();
+        itemList.push_back(nibble);
+        dropSpace->dropItem(nibble);
+    }
 }

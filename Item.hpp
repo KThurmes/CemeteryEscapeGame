@@ -3,13 +3,15 @@
 #include <string>
 using std::string;
 
-class Item{
-    protected:
-        string itemName;
-        string description;
-    public:
-        string getItemName();
-        string getDescription();
+class Item
+{
+protected:
+    string itemName;
+    string description;
+
+public:
+    string getItemName();
+    string getDescription();
 };
 
 #endif

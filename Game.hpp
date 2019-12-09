@@ -43,5 +43,6 @@ public:
     int stringPosition(int, int, int);
     void checkGlareHit();
     void setGlares();
+    void snackDrop(NPC *);
 };
 #endif

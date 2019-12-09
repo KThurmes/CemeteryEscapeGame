@@ -5,10 +5,12 @@ using std::cout;
 using std::endl;
 using std::string;
 
-string Item::getItemName(){
+string Item::getItemName()
+{
     return itemName;
 }
 
-string Item::getDescription(){
+string Item::getDescription()
+{
     return description;
 }

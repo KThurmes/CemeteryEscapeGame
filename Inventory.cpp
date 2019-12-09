@@ -23,6 +23,7 @@ int Inventory::addItem(Item *toAdd)
     if (nItems < maxItems)
     {
         inventoryList.push_back(toAdd);
+        nItems++;
         successfullyAdded = 1;
     }
     else
@@ -36,11 +37,12 @@ int Inventory::addItem(Item *toAdd)
 
 void Inventory::showItems()
 {
-
+    int j = 1;
     for (auto it = inventoryList.begin(); it != inventoryList.end(); ++it)
     {
         Item *theItem = *it;
-        cout << theItem->getItemName() << " " << endl;
+        cout << j << ". " << theItem->getItemName() << " " << endl;
+        ++j;
     }
 }
 
@@ -48,6 +50,7 @@ Item *Inventory::useItem(Item *theItem)
 {
     auto p = std::find(inventoryList.begin(), inventoryList.end(), theItem);
     inventoryList.erase(p);
+    --nItems;
     return theItem;
 }
 
@@ -56,6 +59,7 @@ Item *Inventory::useItem(int thePosition)
     Item *toBeReturned;
     toBeReturned = inventoryList.at(thePosition);
     removeItem(toBeReturned);
+    --nItems;
     return toBeReturned;
 }
 
