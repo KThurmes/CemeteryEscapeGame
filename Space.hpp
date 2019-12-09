@@ -15,7 +15,6 @@ protected:
     bool hasCharacter;
     bool passable;
     string printSymbol;
-    //int idNum;
     Item *item;
     string spaceType;
     bool spawnGhostEvent;

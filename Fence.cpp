@@ -36,15 +36,20 @@ string Fence::printSpaceBottom()
 void Fence::interact(Inventory *playersInventory)
 {
 
-    cout << "There's a fence here!" << endl;
-    cout << "This is a pretty solid-looking fence, and it's got spikes on the top, so I don't think I can climb over..." << endl;
+    cout << "There's a fence here!" << endl
+         << endl;
+    cout << "This is a pretty solid-looking fence, and it's got spikes on the top," << endl;
+    cout << "so I don't think I can climb over..." << endl;
     int sheetIndex = playersInventory->findItem("sheet");
     bool hasSheet = (sheetIndex < playersInventory->getMaxItems());
     if (hasSheet)
     {
         if (passable == false)
         {
-            cout << "But maybe... What if I try throwing this sheet over the top to cover the spikes? Then I might be able to climb over it!" << endl;
+
+            cout << "But maybe... What if I try throwing this sheet over the top to cover" << endl;
+            cout << "the spikes? Then I might be able to climb over it!" << endl
+                 << endl;
             cout << "Throw the sheet?" << endl;
             cout << "1. Yes" << endl;
             cout << "2. No" << endl;

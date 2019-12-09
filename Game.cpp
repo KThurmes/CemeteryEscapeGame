@@ -317,13 +317,14 @@ void Game::showBackpackContents()
         Item *theItem = theBackpack->useItem(selection - 1);
         if (theItem->getItemName() == "snack")
         {
-            player.takeDamage(1);
+            player.takeDamage(5);
             cout << "That was a yummy snack! I feel a little better!" << endl;
-            delete theItem;
+            //delete theItem;
         }
         else
         {
             cout << "You can't use that here!" << endl;
+            theBackpack->addItem(theItem);
         }
     }
 }
@@ -368,7 +369,7 @@ bool Game::checkGameOver()
 {
     if (player.getHealth() < 1)
     {
-        cout << "You have run out of health! You will now become a permanent resident of this cemetary." << endl;
+        cout << "You have run out of health! You will now become a permanent resident \nof this cemetary." << endl;
         enterToContinue();
         return 1;
     }
@@ -377,7 +378,7 @@ bool Game::checkGameOver()
     if (sister.getFound() && escaped)
     {
         gameOver = true;
-        cout << "Congratulations! You've found your sister and now you've gotten home in time for mom's spaghetti!" << endl;
+        cout << "Congratulations! You've found your sister and now you've gotten home \nin time for mom's spaghetti!" << endl;
         enterToContinue();
         return 1;
     }

@@ -28,7 +28,7 @@ int Inventory::addItem(Item *toAdd)
     }
     else
     {
-        cout << "You don't have enough room in your backpack for that item! Please use something up to free up space in your backpack!" << endl;
+        cout << "You don't have enough room in your backpack for that item! Please use \nsomething up to free up space in your backpack!" << endl;
         enterToContinue();
         successfullyAdded = 0;
     }

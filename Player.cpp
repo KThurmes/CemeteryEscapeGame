@@ -8,7 +8,7 @@ Player::Player()
 {
     location = 0;
     symbol = 'x';
-    health = 25;
+    health = 30;
 }
 
 Player::~Player()

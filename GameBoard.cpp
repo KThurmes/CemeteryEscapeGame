@@ -64,7 +64,7 @@ GameBoard::GameBoard()
             else if (i == 6 && j == 8)
             {
                 Gravestone *grave = new Gravestone();
-                grave->setEngraving("JOE'S HALLOWEEN PRACTICAL PROP SHOP");
+                grave->setEngraving("\"JOE'S HALLOWEEN PRACTICAL PROP SHOP\"");
                 spaces[i][j] = grave;
             }
 

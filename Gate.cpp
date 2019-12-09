@@ -48,7 +48,6 @@ void Gate::interact(Inventory *playersInventory)
             {
                 cout << "The gate is unlocked!" << endl;
                 passable = true;
-                //###TODO Change the visualization eventually.
             }
             else
             {
