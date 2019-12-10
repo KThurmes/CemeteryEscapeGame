@@ -18,7 +18,6 @@ using std::cout;
 using std::distance;
 using std::endl;
 using std::find;
-
 using std::vector;
 
 Inventory::Inventory()
@@ -72,7 +71,7 @@ bit redundant.
 ********************************************************************/
 Item *Inventory::useItem(Item *theItem)
 {
-    auto p = std::find(inventoryList.begin(), inventoryList.end(), theItem);
+    auto p = find(inventoryList.begin(), inventoryList.end(), theItem);
     inventoryList.erase(p);
     --nItems;
     return theItem;
@@ -98,7 +97,7 @@ pointed to by rmItem
 *********************************************************************/
 void Inventory::removeItem(Item *rmItem)
 {
-    auto p = std::find(inventoryList.begin(), inventoryList.end(), rmItem);
+    auto p = find(inventoryList.begin(), inventoryList.end(), rmItem);
     inventoryList.erase(p);
 }
 
@@ -114,6 +113,8 @@ int Inventory::findItem(Item *findItem)
         Item *theItem = *it;
         if (theItem == findItem)
         {
+            //Use of "distance" adopted from https://thispointer.com/c-how-to-find-an-element-in-vector-and-get-its-index/
+            //Accessed 12/1/2019
             int index = distance(inventoryList.begin(), it);
             return index;
         }
