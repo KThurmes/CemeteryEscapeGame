@@ -17,10 +17,10 @@ using std::string;
 void enterToContinue()
 {
     string temp;
-    cout << "Press \"enter\" to continue." << endl;
+    cout << "Type any character and \"enter\" to continue." << endl;
     //receive the input
     cin.get();
-    //cear the input out
-    cin.clear();
+    //clear the input out
+    //cin.clear();
     cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 }

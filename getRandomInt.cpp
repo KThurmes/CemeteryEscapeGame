@@ -11,6 +11,7 @@ lowerLimit and upperLimit (inclusive)
 
 int getRandomInt(int lowerLimit, int upperLimit)
 {
+    srand(time(NULL));
     int range = upperLimit - lowerLimit + 1;
     return ((rand() % range) + lowerLimit);
 }

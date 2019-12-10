@@ -13,7 +13,6 @@ hungry and cold.
 #include "getRandomInt.hpp"
 #include "enterToContinue.hpp"
 #include <cstdlib>
-#include <ctime>
 using std::cout;
 using std::endl;
 
@@ -35,7 +34,6 @@ just yet.
 ********************************************************************/
 Space *Ghost::move()
 {
-    srand(time(NULL));
     //Randomly choose to turn or step
     int moveOption = getRandomInt(0, 1);
 

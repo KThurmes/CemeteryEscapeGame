@@ -105,7 +105,7 @@ void Menu::backstory()
     cout << "But the sun is setting and dinner is on the table, so you grab your\nbackpack and head over to the cemetary." << endl;
     cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl
          << endl;
-    //enterToContinue();
+    enterToContinue();
     cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl
          << endl;
     cout << "You arrive at the cemetery just in time. You hear the gate lock \nautomatically behind you precisely at the moment the sun dips below \nthe horizon. The full moon is shrouded in whispy clouds that cast \neerie shadows on the headstones." << endl
@@ -117,7 +117,7 @@ void Menu::backstory()
     cout << "No, it's not just your imagination." << endl;
     cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl
          << endl;
-    //enterToContinue();
+    enterToContinue();
     cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl
          << endl;
     cout << "You know your sister is in here somewhere, but where? You look around \nand see only the phantasmic apparitions that once were confined to \nstories. But no sister." << endl

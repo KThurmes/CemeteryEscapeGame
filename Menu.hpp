@@ -20,7 +20,6 @@ public:
     void launchGame();
     void backstory();
     void gameOptions();
-    void gameInfoMenu();
     void gameLogistics();
 };
 

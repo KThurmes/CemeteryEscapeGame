@@ -22,7 +22,6 @@ board (printBoardKey), and prints the player's health
 #include "GameBoard.hpp"
 #include <iostream>
 #include <cstdlib>
-#include <ctime>
 #include "Key.hpp"
 #include "Sheet.hpp"
 #include <list>
@@ -38,6 +37,7 @@ using std::string;
 
 Game::Game()
 {
+
     //Put the player in their starting place.
     moveCharacter(&player, 1, 7);
 
@@ -116,10 +116,9 @@ stops when the player runs out of health or wins the game.
 *********************************************************************/
 void Game::turn()
 {
-    gameOver = checkGameOver();
     Space *destination;
 
-    if (gameOver == false)
+    if (!gameOver)
     {
         //Player makes their move
         destination = player.move();
@@ -166,7 +165,7 @@ void Game::turn()
 
         gameOver = checkGameOver();
 
-        if (gameOver == false)
+        if (!gameOver)
         {
             //Pick up any items that are lying around
             Item *pickedUp = player.getLocation()->pickUpItem();
@@ -198,16 +197,19 @@ void Game::turn()
             }
             //Update the spaces that are being hit by the glares of the ghosts
             setGlares();
+
+            //Check that the player isn't in a glare space. Update health if they are.
+            int glareDamage = checkGlareHit();
+            player.takeDamage(glareDamage);
+            gameOver = checkGameOver();
+
+            if (!gameOver)
+            {
+                //Player gets hungrier
+                player.takeDamage(-1);
+                gameOver = checkGameOver();
+            }
         }
-
-        //Check that the player isn't in a glare space. Update health if they are.
-        int glareDamage = checkGlareHit();
-        player.takeDamage(glareDamage);
-        gameOver = checkGameOver();
-
-        //Player gets hungrier
-        player.takeDamage(-1);
-        gameOver = checkGameOver();
     }
 
     //print screen
@@ -487,7 +489,7 @@ bool Game::checkGameOver()
     if (sister.getFound() && escaped)
     {
         gameOver = true;
-        cout << "Congratulations! You've found your sister and now you've gotten home \nin time for mom's spaghetti!" << endl;
+        cout << "Congratulations! You've found your sister and now you've gotten home \nin time for dinner!" << endl;
         enterToContinue();
         return 1;
     }

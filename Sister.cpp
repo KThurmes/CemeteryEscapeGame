@@ -15,7 +15,6 @@ getter for found.
 #include "getNumberBetween.hpp"
 #include "enterToContinue.hpp"
 #include <cstdlib>
-#include <ctime>
 using std::cout;
 using std::endl;
 
@@ -37,7 +36,6 @@ to it just yet.
 ********************************************************************/
 Space *Sister::move()
 {
-    srand(time(NULL));
     //Randomly choose to turn or step
     int moveOption = getRandomInt(0, 1);
     //turn

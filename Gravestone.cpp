@@ -116,7 +116,7 @@ void Gravestone::interact(Inventory *playersInventory)
         //Let player know there's a key there
         if (hasKey)
         {
-            cout << "Hm. That's odd. There's a little secret compartment near the bottom of\this novelty gravestone. Open it?" << endl;
+            cout << "Hm. That's odd. There's a little secret compartment near the bottom of\nthis novelty gravestone. Open it?" << endl;
             cout << "1. Yes" << endl;
             cout << "2. No" << endl;
             selection = getNumberBetween(1, 2);
