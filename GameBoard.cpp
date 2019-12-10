@@ -1,3 +1,15 @@
+/********************************************************************* 
+** Author: Katheen Thurmes
+** Date: 9 Dec., 2019
+** Description: GameBoard is an object that contains all the spaces 
+that will be used during gameplay. Its most important role is in the 
+construction of the game board. In addition to the cnstructor, it has 
+methods for constructing a string to represent itself with, a method 
+for deleting all its dynamically-allocated memory, a method for 
+getting a specific space, a method for printing out the key for the 
+board, and a method for setting all the Spaces' glare data member to 
+false.
+*********************************************************************/
 #include "GameBoard.hpp"
 #include "Space.hpp"
 #include "Empty.hpp"
@@ -6,11 +18,16 @@
 #include "Gate.hpp"
 #include "Fence.hpp"
 #include "Gravestone.hpp"
-#include "Key.hpp"
 
 using std::cout;
 using std::endl;
 
+/********************************************************************* 
+** Author: Katheen Thurmes
+** Date: 9 Dec., 2019
+** Description: The GameBoard constructor sets up a board with 
+different spaces. It does not add any Characters.
+*********************************************************************/
 GameBoard::GameBoard()
 {
     nCols = 14;
@@ -68,7 +85,7 @@ GameBoard::GameBoard()
                 spaces[i][j] = grave;
             }
 
-            //Fill in every other square
+            //Fill in every other square with an empty tile.
             else
             {
                 spaces[i][j] = new Empty();
@@ -123,6 +140,13 @@ GameBoard::GameBoard()
     }
 }
 
+/********************************************************************* 
+** Author: Katheen Thurmes
+** Date: 9 Dec., 2019
+** Description: printGameBoard doesn't actually print anything to the 
+console, but returns a string that, when printed to the console, 
+represents the game board, sans characters.
+*********************************************************************/
 string GameBoard::printGameBoard()
 {
     string boardVis = "";
@@ -164,6 +188,11 @@ string GameBoard::printGameBoard()
     return boardVis;
 }
 
+/********************************************************************* 
+** Author: Katheen Thurmes
+** Date: 9 Dec., 2019
+** Description: deleteGameBoard frees the game board's memory.
+*********************************************************************/
 void GameBoard::deleteGameBoard()
 {
     for (int i = 0; i < nRows; ++i)
@@ -177,11 +206,22 @@ void GameBoard::deleteGameBoard()
     delete[] spaces;
 }
 
+/********************************************************************* 
+** Author: Katheen Thurmes
+** Date: 9 Dec., 2019
+** Description: getSpaceAt returns a pointer to the space that is 
+located at row, column.
+*********************************************************************/
 Space *GameBoard::getSpaceAt(int row, int col)
 {
     return spaces[row][col];
 }
 
+/********************************************************************* 
+** Author: Katheen Thurmes
+** Date: 9 Dec., 2019
+** Description: printKey prints a key to the map
+*********************************************************************/
 void GameBoard::printKey()
 {
     cout << endl
@@ -189,7 +229,7 @@ void GameBoard::printKey()
     cout << "|, --";
     cout << "        ";
     cout << "Space boundaries" << endl;
-    cout << "X";
+    cout << "x";
     cout << "            ";
     cout << "Player location" << endl;
     cout << "---";
@@ -198,15 +238,16 @@ void GameBoard::printKey()
     cout << "===";
     cout << "          ";
     cout << "Gate" << endl;
-    cout << "t";
+    cout << "n";
     cout << "            ";
-    cout << "Gravestone";
+    cout << "Gravestone" << endl;
     cout << "#";
     cout << "            ";
-    cout << "Item";
-    cout << "G";
-    cout << "            ";
-    cout << "Ghost";
+    cout << "Item" << endl;
+    cout << "G            ";
+    cout << "Ghost" << endl;
+    cout << "<, ^, >, v   ";
+    cout << "Direction indicators" << endl;
     cout << "g";
     cout << "            ";
     cout << "???";
@@ -224,6 +265,12 @@ int GameBoard::getNCols()
     return nCols;
 }
 
+/********************************************************************* 
+** Author: Katheen Thurmes
+** Date: 9 Dec., 2019
+** Description: resetGlares goes through all the Spaces in the 
+gameBoard and sets all their "glare" bools to false.
+*********************************************************************/
 void GameBoard::resetGlares()
 {
     for (int i = 0; i < nRows; ++i)

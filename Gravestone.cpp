@@ -1,3 +1,12 @@
+/********************************************************************* 
+** Author: Katheen Thurmes
+** Date: 9 Dec., 2019
+** Description: Gravestone is a child class of Space. It is initially 
+impassible, but can be rendered passible if the player wiggles it a 
+bit. However, when it is wiggled, it sets the spawnGhost flag to true 
+and that can be used to trigger the spawning of a new Ghost
+*********************************************************************/
+
 #include "Gravestone.hpp"
 #include "Space.hpp"
 #include <iostream>
@@ -48,6 +57,12 @@ string Gravestone::printSpaceBottom()
     return "   ";
 }
 
+/********************************************************************* 
+** Description: interact conducts the interaction between the player 
+and the space. Gravestone's interact function allows the player to 
+wiggle the stone, clean it off, and find the key underneath it (if 
+it's there)
+*********************************************************************/
 void Gravestone::interact(Inventory *playersInventory)
 {
     int selection;
@@ -71,6 +86,7 @@ void Gravestone::interact(Inventory *playersInventory)
         }
     }
 
+    //Allow user to choose to clean off the headstone
     if (!cleaned && !passable)
     {
         cout << endl
@@ -89,12 +105,15 @@ void Gravestone::interact(Inventory *playersInventory)
             cleaned = false;
         }
     }
+    //Print epitaph
     if (cleaned && !passable)
     {
         cout << "Here's what the gravestone says: " << endl;
         cout << this->engraving;
         cout << endl
              << endl;
+
+        //Let player know there's a key there
         if (hasKey)
         {
             cout << "Hm. That's odd. There's a little secret compartment near the bottom of\this novelty gravestone. Open it?" << endl;

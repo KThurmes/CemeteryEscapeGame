@@ -1,3 +1,11 @@
+/********************************************************************* 
+** Author: Katheen Thurmes
+** Date: 9 Dec., 2019
+** Description: Ghost is a child class of Character and NPC. They 
+have a deathly glare and they make the people who run into them very 
+hungry and cold.
+********************************************************************/
+
 #include "Ghost.hpp"
 #include "NPC.hpp"
 #include "Character.hpp"
@@ -20,6 +28,11 @@ Ghost::~Ghost()
 {
 }
 
+/********************************************************************* 
+** Description: Ghosts randomly choose whether to turn or move 
+forward. They return their destination Space without moving to it 
+just yet.
+********************************************************************/
 Space *Ghost::move()
 {
     srand(time(NULL));
@@ -41,6 +54,13 @@ Space *Ghost::move()
     }
 }
 
+/********************************************************************* 
+** Author: Katheen Thurmes
+** Date: 9 Dec., 2019
+** Description: Ghosts can make their presence felt by humans who 
+have the misfortune of running into them. interact returns -1 damage
+for the player.
+********************************************************************/
 int Ghost::interact()
 {
     cout << endl

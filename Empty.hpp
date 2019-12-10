@@ -1,3 +1,5 @@
+
+
 #ifndef EMPTY_HPP
 #define EMPTY_HPP
 #include "Space.hpp"

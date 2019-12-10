@@ -1,3 +1,11 @@
+/********************************************************************* 
+** Author: Katheen Thurmes
+** Date: 9 Dec., 2019
+** Description: Gate is a child class of Space. It represents an 
+impassible space that can become passible if the player has a key in 
+their inventory when they interact with it.
+*********************************************************************/
+
 #include "Gate.hpp"
 #include "Space.hpp"
 #include <iostream>
@@ -31,6 +39,12 @@ string Gate::printSpaceBottom()
     return "   ";
 }
 
+/********************************************************************* 
+** Description: interact conducts the interaction between the player 
+and the space. Gate's interact function allows the player to see if 
+it is locked, or to open it with a key. Once it is opened, the space 
+becomes passable.
+*********************************************************************/
 void Gate::interact(Inventory *playersInventory)
 {
     cout << "There's a gate here!" << endl;

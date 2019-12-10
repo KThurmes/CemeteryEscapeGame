@@ -1,3 +1,21 @@
+/********************************************************************* 
+** Author: Katheen Thurmes
+** Date: 9 Dec., 2019
+** Description: Space is a parent class describing a space in the game 
+board. It contains pointers to its four neighboring Spaces, an Item, a 
+bool for whether there is a character on the space or not, whether the 
+sSpace is passable by a Character or not, whether it is being hit with 
+a NPC's glare or not, whether it has a key or not. It also has a flag 
+for spawning a new Ghost. It contains strings to describe what kind of 
+space it is and to store the print symbol of the space. There are also 
+ints to describe where in the gameBoard grid the Space is.
+
+The methods in this Class are primarily getters and setters. 
+Essentially, the only non-trivial method is pickUpItem(), which is 
+functionally a "getter" but it also sets the item member to null 
+before returning the Item that used to be the Space's item.
+*********************************************************************/
+
 #include "Space.hpp"
 #include "Item.hpp"
 #include <iostream>
@@ -79,6 +97,10 @@ bool Space::hasItem()
     return (this->item != 0);
 }
 
+/********************************************************************* 
+** Description: pickUpItem returns a pointer to the Space's item 
+member and sets their item pointer to null.
+*********************************************************************/
 Item *Space::pickUpItem()
 {
 
@@ -88,6 +110,7 @@ Item *Space::pickUpItem()
         cout << "1. Yes" << endl;
         cout << "2. No" << endl;
         int selection = getNumberBetween(1, 2);
+        //return pointer to item and set Space's item pointer to null.
         if (selection == 1)
         {
             Item *toBeReturned = item;

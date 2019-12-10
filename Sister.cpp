@@ -1,3 +1,13 @@
+/********************************************************************* 
+** Author: Katheen Thurmes
+** Date: 9 Dec., 2019
+** Description: Sister is a child class of Character and NPC. The 
+sister inherits from Character, but also has an additional data member
+and function.
+The additional data member is the found boolean which is a flag for 
+sister having been found. The additional member function is simply a 
+getter for found.
+*********************************************************************/
 #include "Sister.hpp"
 #include "getRandomInt.hpp"
 #include "Character.hpp"
@@ -20,12 +30,14 @@ Sister::~Sister()
 {
 }
 
+/********************************************************************* 
+** Description: Sister randomly chooses whether to turn or move 
+forward. The function returns their destination Space without moving 
+to it just yet.
+********************************************************************/
 Space *Sister::move()
 {
-
     srand(time(NULL));
-
-    //cout << "Direction before moving: " << direction << endl;
     //Randomly choose to turn or step
     int moveOption = getRandomInt(0, 1);
     //turn
@@ -43,6 +55,13 @@ Space *Sister::move()
     }
 }
 
+/********************************************************************* 
+** Description: When the player encounters Sister, they have the 
+option to take off her sheet and have her go home. The sheet falls 
+to the ground and the player can pick it up. Sister disappears. The 
+int that is returned is 0 because she does not do any damage to the 
+player.
+********************************************************************/
 int Sister::interact()
 {
     cout << endl;

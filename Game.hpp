@@ -1,3 +1,22 @@
+/********************************************************************* 
+** Author: Katheen Thurmes
+** Date: 9 Dec., 2019
+** Description: Game is the main driver for the entire game. It 
+keeps all the objects relating to game play together in one place.
+
+Data members: player and sister objects, a gameboard, a list of all 
+non-playable characters that appear in the game (NPCList), a list of 
+all items that appear in the game (itemList), and a bool that will 
+flag that the game is over.
+
+Methods: Game has public methods to print the game board 
+(printGameBoard), delete itself (deleteGame), run through one turn 
+(turn), show the contents of the player's backpack 
+(showBackpackContents), print a key that explains the symbols on the 
+board (printBoardKey), and prints the player's health 
+(printPlayerHealth).
+*********************************************************************/
+
 #ifndef GAME_HPP
 #define GAME_HPP
 #include "Player.hpp"
@@ -20,29 +39,28 @@ private:
     GameBoard gb;
     list<NPC *> NPCList;
     list<Item *> itemList;
-    bool playerHasSheet;
-    bool playerHasKey;
     bool gameOver;
 
-public:
-    Game();
-    void printGameBoard();
-    void deleteGame();
-    void turn();
     void interaction(Space *);
-    void showBackpackContents();
-    void printBoardKey();
     void spawnGhost(int, int);
     void spawnGhost(Space *);
     bool checkGameOver();
-    void printPlayerHealth();
     void moveCharacter(Character *, Space *);
     void moveCharacter(Character *, int, int);
-    bool getGameOver() { return gameOver; };
     string buildPrintString();
     int stringPosition(int, int, int);
-    void checkGlareHit();
+    int checkGlareHit();
     void setGlares();
     void snackDrop(NPC *);
+
+public:
+    Game();
+    bool getGameOver() { return gameOver; };
+    void printGameBoard();
+    void deleteGame();
+    void turn();
+    void showBackpackContents();
+    void printBoardKey();
+    void printPlayerHealth();
 };
 #endif

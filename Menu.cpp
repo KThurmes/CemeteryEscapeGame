@@ -1,3 +1,9 @@
+/********************************************************************* 
+** Author: Katheen Thurmes
+** Date: 9 Dec., 2019
+** Description: Menu initializes the game and allows the user to 
+select what to do after each round.
+********************************************************************/
 #include "Menu.hpp"
 #include <iostream>
 #include "getNumberBetween.hpp"
@@ -10,12 +16,19 @@ Menu::Menu()
 {
 }
 
+/********************************************************************* 
+** Description: welcome prints a friendly message to the console.
+********************************************************************/
 void Menu::welcome()
 {
     cout << "Welcome!" << endl;
     startMenu();
 }
 
+/********************************************************************* 
+** Description: startMenu allows the user to choose to start a new 
+game or not
+********************************************************************/
 void Menu::startMenu()
 {
     cout << "Would you like to start a new game?" << endl;
@@ -33,6 +46,10 @@ void Menu::startMenu()
     }
 }
 
+/********************************************************************* 
+** Description: LaunchGame gets everythign set up for the first 
+round of actions
+********************************************************************/
 void Menu::launchGame()
 {
     backstory();
@@ -41,6 +58,10 @@ void Menu::launchGame()
     gameOptions();
 }
 
+/********************************************************************* 
+** Description: gameLogistics just prints game logistics to the 
+console
+********************************************************************/
 void Menu::gameLogistics()
 {
     cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~Game Logistics~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl
@@ -49,7 +70,7 @@ void Menu::gameLogistics()
     cout << "gate (marked as \"===\" on the map). There are a smattering of" << endl;
     cout << "tombstones (\"n\"), and ghosts (\"G\")." << endl
          << endl;
-    cout << "You estimate that you can take about 25 more steps before you succumb"
+    cout << "You estimate that you can take about 30 more steps before you succumb"
          << endl;
     cout << "to hunger. " << endl
          << endl;
@@ -65,6 +86,9 @@ void Menu::gameLogistics()
          << endl;
 }
 
+/********************************************************************* 
+** Description: backstory prints the backstory to the console.
+********************************************************************/
 void Menu::backstory()
 {
     cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
@@ -81,7 +105,7 @@ void Menu::backstory()
     cout << "But the sun is setting and dinner is on the table, so you grab your\nbackpack and head over to the cemetary." << endl;
     cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl
          << endl;
-    enterToContinue();
+    //enterToContinue();
     cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl
          << endl;
     cout << "You arrive at the cemetery just in time. You hear the gate lock \nautomatically behind you precisely at the moment the sun dips below \nthe horizon. The full moon is shrouded in whispy clouds that cast \neerie shadows on the headstones." << endl
@@ -93,7 +117,7 @@ void Menu::backstory()
     cout << "No, it's not just your imagination." << endl;
     cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl
          << endl;
-    enterToContinue();
+    //enterToContinue();
     cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl
          << endl;
     cout << "You know your sister is in here somewhere, but where? You look around \nand see only the phantasmic apparitions that once were confined to \nstories. But no sister." << endl
@@ -105,6 +129,10 @@ void Menu::backstory()
     enterToContinue();
 }
 
+/********************************************************************* 
+** Description: gameOptions prints the main options of the game to 
+the console and allows the user to choose which they would like to do.
+********************************************************************/
 void Menu::gameOptions()
 {
     if (game->getGameOver())
